@@ -1,0 +1,4 @@
+git install
+flask install
+mysql install
+flask-mysql install
