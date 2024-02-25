@@ -2,6 +2,11 @@
 /*Body style*/
 body, html {
     height: 100%;
+    background-image: url('../img/app-back4.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .workspace-body {
@@ -130,7 +135,7 @@ footer {
 
 /*iframe on main page (can be used for internal adverts*/
 .frame {
-    background-image: url("../img/Background1.jpg");
+    background-image: url("../img/banner.jpg");
 }
 
 
@@ -176,24 +181,3 @@ footer {
     }
 
 }
-
-
-
-/*
-
-Bootstrap classes used
-----------------------
--------------------------------
-|class       | html element   |
--------------------------------
-| fix-top    | header         |
--------------------------------
-| row        | header content |
--------------------------------
-| col-6      | inside row div |
--------------------------------
-| text-right | header pc-menu |
-------------------------------
-| btn
-
-*/

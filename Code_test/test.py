@@ -1,10 +1,12 @@
-from flask import Flask
+import requests
+import json
 
-app = Flask(__name__)
+def search_books(keyword):
+    url = f'https://www.googleapis.com/books/v1/volumes?q={keyword}'
+    response = requests.get(url)
+    data = response.json()
+    return data
 
-@app.route("/")
-def index():
-	return "Flask working!"
-
-if __name__ == "__main__":
-	app.run()
+# Search for books with the keyword "Python"
+search_results = search_books('Python')
+print(search_results['items'][1]['volumeInfo'])

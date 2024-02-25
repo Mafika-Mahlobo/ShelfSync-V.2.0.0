@@ -1,12 +1,12 @@
 #create database
-CREATE DATABASE ShelfSyncDB;
+#CREATE DATABASE ShelfSyncDB;
 
 #select database
 USE ShelfSyncDB;
 
 #create tables
-CREATE TABLE resource (
-	resource_id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
+/*CREATE TABLE resource (*/
+/*	resource_id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
 	title VARCHAR(50) NOT NULL,
 	publisher VARCHAR(50),
 	publication_year DATE
@@ -73,7 +73,12 @@ CREATE TABLE transactions (
 	FOREIGN KEY (resource_id) REFERENCES resource(resource_id),
 	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
+*/
 
+/*ALTER TABLE employee add is_admin VARCHAR(5) NOT NULL DEFAULT 'No';*/
 
-#show database tables
-SHOW TABLES;
+#test resulta
+INSERT INTO employee (name, position, email, phone, username, password)
+VALUES ('Admin', 'Library manager', 'admin.joe@shelfsync.co.za', '1223553354', 'Admin1', 'Admin123');
+
+SELECT * FROM employee; 

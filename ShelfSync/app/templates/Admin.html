@@ -24,11 +24,8 @@
                 <div class="col-6 text-right menu-toggle">
 
                     <div class="btn-group pc-menu">
-                        <button  class="btn btn-light universal-menu-text">Sign-In</button>
-                        <button class="btn btn-info universal-menu-text">Sign Up</button>
+                        <i class="bi bi-person-lines-fill mobile-menu logo"></i>
                     </div>
-                    <span><i class="bi bi-list mobile-menu logo"></i></span>
-
                 </div>
             </div>
 
@@ -36,42 +33,20 @@
     </header>
     
     <!-- iframe container -->
-    <div class="frame-container container">
+    <!-- <div class="frame-container container">
         <iframe src="{{ url_for('static', filename='slide.html') }}"></iframe>
-    </div>
+    </div> -->
 
     <div class="body_container container">
         
     <div  class="text-container">
-        <span class="login-icon-home pic"><i class="bi bi-person-bounding-box"></i></span>
-        <div class="input-group inputs">
-            <input class="submit-button form-control focus-trigger-login universal-menu-text" type="text" name="" placeholder="Username">
-        </div>
-        <div class="input-group inputs">
-            <input class="submit-button form-control universal-menu-text" type="password" name="" placeholder="Password">
-        </div>
-        <div class="input-group inputs">
-            <button class="submit-button btn btn-info sub universal-menu-text">Sign In</button>
-        </div>
+        <h1 style="color: red;">Admin account</h1>
 
     </div>
 
     <div class="text-container">
-        <div class="input-group mb-3">
-            <span class="input-group-text universal-menu-text"><i class="bi bi-search"></i></span>
-            <input type="text" class="form-control focus-trigger-search universal-menu-text" name="" placeholder="Search books with title, author or ISBN">
-        </div>
-        <div>
-            <ul class="list-group universal-menu-text">
-                {% for row in user %}
-                <li class=" lists-items list-group-item">{{ row }}</li>
-                {% endfor %}
-            </ul>
-        </div>
+
     </div>
-
-
-    <span></span>
 
 
     </div>
@@ -79,7 +54,7 @@
     <!-- Footer -->
     <footer>
         <div class="universal-menu-text col-6">
-            <p>{{ error }}</p>
+            <p>Contact us at: Mafika@ShelfSync.com | 123-456-7890</p>
             <p>Developer: Mafika Mahlobo</p>
         </div>
     </footer>
