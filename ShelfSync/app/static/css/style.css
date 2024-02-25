@@ -1,0 +1,199 @@
+
+/*Body style*/
+body, html {
+    height: 100%;
+}
+
+.workspace-body {
+    padding-top: 56px;
+    background-color: #ebedec;
+}
+
+
+/*header*/
+header.fixed-top {
+    position: fixed;
+    width: 100%;
+    background-color: #274746;
+    color: #00030f; 
+    min-height: 12px;
+    height: auto;
+    z-index: 1000;
+}
+
+/*container inside inside header*/
+.header-container{
+    padding: 5px 10px 5px 10px;
+}
+
+/*company logo*/
+.logo {
+    font-size: 40px;
+    color: #37a2a1;
+}
+
+/*text next to logo*/
+.logo-txt {
+    font-size: 10px;
+    color: white;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*container for iframe*/
+
+.frame-container {
+    max-width: 1200px; 
+    height: 100px;
+    padding: 0px; 
+    margin: 0 auto; 
+    margin-top: 20px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+/*body*/
+.body_container.container {
+        display: flex;
+        flex-direction: row;
+}
+
+
+/*containers inside main page*/
+.text-container {
+    flex: 1;
+    min-height: 100px;
+    height: auto;
+    width: 50%;
+    border-radius: 4px;
+    margin: 10px 10px 10px 10px;
+    /*background-color: black;*/
+}
+
+
+.login-icon-home {
+    display: flex;
+    justify-content: center;
+    font-size: 150px;
+    color: #37a2a1;
+}
+
+
+/*divs holding information on my body*/
+.data-divs {
+    flex: 1;
+}
+
+
+
+.inputs {
+    width: 50%;
+    margin-left: 25%;
+}
+
+
+.submit-button {
+    width: 100%;
+    text-align: center;
+    margin: 2px;
+}
+
+/*list items across the application*/
+.lists-items:hover{
+    background-color: #c8fafa;
+}
+
+/*text inside the footer*/
+.footer-text {
+    font-size: 10px;
+}
+
+
+/* Footer */
+footer {
+    background-color: #274746;
+    opecity: 0.5;
+    color: white;
+    height: auto;
+    min-height: 40%;
+}
+
+/* overriding Bootstrap class for for inputa*/
+.form-control {
+    border-color: #3deae2;
+}
+
+/*iframe on main page (can be used for internal adverts*/
+.frame {
+    background-image: url("../img/Background1.jpg");
+}
+
+
+/*text size across the application (labels, placeholder etc.)*/
+.universal-menu-text {
+    font-size: 10px;
+}
+
+
+/*top menu for mobile devices*/
+.mobile-menu {
+    visibility: hidden;
+    float: left;
+}
+
+/*buttons for desktop*/
+.pc-menu {
+    visibility: visible;
+}
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*media queries for responsive design*/
+
+@media screen and (max-width: 1190px){
+
+    .body_container.container {
+        display: flex;
+        flex-direction: column;
+}
+
+.text-container {
+    width: 100%;
+}
+
+.mobile-menu {
+        visibility: visible;
+        float: none;
+    }
+
+    .pc-menu {
+        visibility: hidden;
+    }
+
+}
+
+
+
+/*
+
+Bootstrap classes used
+----------------------
+-------------------------------
+|class       | html element   |
+-------------------------------
+| fix-top    | header         |
+-------------------------------
+| row        | header content |
+-------------------------------
+| col-6      | inside row div |
+-------------------------------
+| text-right | header pc-menu |
+------------------------------
+| btn
+
+*/

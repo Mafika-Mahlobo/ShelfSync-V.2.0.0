@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#00ffff">
     <title>Home Page</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="../static/css/style.css" rel="stylesheet">
 </head>
 <body class="workspace-body">
+
     <!-- Header -->
     <header class="fixed-top">
 
@@ -18,56 +18,51 @@
             <div class="row">
 
                 <div class="col-6">
-                    <span ><i class="logo bi bi-soundwave"></i></i><span class="logo-txt">ShelfSync...</span></span>
+                    <span ><i class="logo bi bi-soundwave"></i><span class="logo-txt">ShelfSync...</span></span>
                 </div>
 
-                <div class="col-6 text-right">
+                <div class="col-6 text-right menu-toggle">
 
-                    <div class="btn-group">
-                        <button  class="btn btn-light">Sign-In</button>
-                       <button class="btn btn-info">Sign Up</button>
+                    <div class="btn-group pc-menu">
+                        <button  class="btn btn-light universal-menu-text">Sign-In</button>
+                        <button class="btn btn-info universal-menu-text">Sign Up</button>
                     </div>
+                    <span><i class="bi bi-list mobile-menu logo"></i></span>
 
                 </div>
-
             </div>
+
         </div>
     </header>
     
-    <!-- Body -->
-    <div class="container">
-        <iframe src="announcements.html">
-            
-        </iframe>
+    <!-- iframe container -->
+    <div class="frame-container container">
+        <iframe src="announcements.html"></iframe>
     </div>
+
     <div class="body_container container">
         
-    <div  class="text-container data-divs" id="login-dive-home">
-        <span class="login-icon-home"><i class="bi bi-person-bounding-box"></i></span>
+    <div  class="text-container">
+        <span class="login-icon-home pic"><i class="bi bi-person-bounding-box"></i></span>
         <div class="input-group inputs">
-            <input class="submit-button form-control" type="text" name="" placeholder="Username">
+            <input class="submit-button form-control focus-trigger-login universal-menu-text" type="text" name="" placeholder="Username">
         </div>
         <div class="input-group inputs">
-            <input class="submit-button form-control" type="password" name="" placeholder="Password">
+            <input class="submit-button form-control universal-menu-text" type="password" name="" placeholder="Password">
         </div>
         <div class="input-group inputs">
-            <button class="submit-button btn btn-info">Sign In</button>
+            <button class="submit-button btn btn-info sub universal-menu-text">Sign In</button>
         </div>
 
     </div>
 
-    <div class="text-container data-divs">
+    <div class="text-container">
         <div class="input-group mb-3">
-            <span class="input-group-text"><i class="bi bi-search"></i></span>
-            <input type="text" class="form-control" name="" placeholder="Search books with title, author or ISBN">
+            <span class="input-group-text universal-menu-text"><i class="bi bi-search"></i></span>
+            <input type="text" class="form-control focus-trigger-search universal-menu-text" name="" placeholder="Search books with title, author or ISBN">
         </div>
         <div>
-            <ul class="list-group">
-                <li class=" lists-items list-group-item">Item1</li>
-                <li class=" lists-items list-group-item">Item1</li>
-                <li class=" lists-items list-group-item">Item1</li>
-                <li class=" lists-items list-group-item">Item1</li>
-                <li class=" lists-items list-group-item">Item1</li>
+            <ul class="list-group universal-menu-text">
                 <li class=" lists-items list-group-item">Item1</li>
                 <li class=" lists-items list-group-item">Item1</li>
             </ul>
@@ -78,8 +73,8 @@
     </div>
     
     <!-- Footer -->
-    <footer >
-        <div class="footer-text container">
+    <footer>
+        <div class="universal-menu-text col-6">
             <p>Contact us at: Mafika@ShelfSync.com | 123-456-7890</p>
             <p>Developer: Mafika Mahlobo</p>
         </div>
