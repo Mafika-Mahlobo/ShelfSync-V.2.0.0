@@ -8,5 +8,5 @@ def get_database_connection():
 		password=current_app.config['MYSQL_PASSWORD'],
 		database=current_app.config['MYSQL_DB']
 		)
+	
 	return conn
-
