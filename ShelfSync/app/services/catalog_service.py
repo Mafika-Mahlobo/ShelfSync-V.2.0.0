@@ -29,9 +29,15 @@ def resource_add(book):
 	link2 = ["thumbnail"]
 	thumbnails = str(link1)+","+str(link2)
 
-	try:
-		cursor.execute("INSERT INTO resources (isbn, title, authors, publisher, published_date, description, categories, language, url) VALUES (isbn_number, book_title, authors, publisher, published_date, description, categories, language, thumbnails)")
+	sql = "INSERT INTO resources (isbn, title, authors, publisher, published_date, description, categories, language, url) VALUES (isbn_number, book_title, authors, publisher, published_date, description, categories, language, thumbnails)"
 
+	try:
+		query = cursor.execute(sql)
+		if (query is not None):
+			return 1
+		else:
+			return 0
+			
 def resource_edit():
 
 	"""
