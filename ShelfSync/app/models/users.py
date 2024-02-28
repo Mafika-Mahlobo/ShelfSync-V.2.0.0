@@ -6,7 +6,12 @@ import json
 
 class Users:
 
-	"""Returns Json representation of user data"""
+	"""
+	Returns Json representation of user data
+
+	...
+
+	"""
 
 	def __init__(self, id, name, email, phone, username, password):
 

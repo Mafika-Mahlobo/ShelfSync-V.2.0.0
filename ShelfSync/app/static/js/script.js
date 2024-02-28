@@ -9,6 +9,20 @@ $(document).ready(function(){
     });
 
 
+    $(".typing-seach").on("input", function(){
+            $.ajax({
+                url: "/api/resources",
+                type: "POST",
+                success: function(data){
+                    $("#temp-id").text(data)
+                },
+                error: function(err){
+                    console.log(err)
+                }
+            });
+    });
+
+
 //change view of main page
     function changeView(flag){
         if (flag === 0){

@@ -61,6 +61,7 @@ CREATE TABLE patrons (
 	password VARCHAR(50) NOT NULL
 );
 
+
 CREATE TABLE transactions (
 	transaction_id INT AUTO_INCREMENT PRIMARY KEY,
 	transaction_type VARCHAR(50) NOT NULL,
@@ -73,12 +74,46 @@ CREATE TABLE transactions (
 	FOREIGN KEY (resource_id) REFERENCES resource(resource_id),
 	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
-*/
+
 
 /*ALTER TABLE employee add is_admin VARCHAR(5) NOT NULL DEFAULT 'No';*/
 
 #test resulta
-INSERT INTO employee (name, position, email, phone, username, password)
-VALUES ('Admin', 'Library manager', 'admin.joe@shelfsync.co.za', '1223553354', 'Admin1', 'Admin123');
+#INSERT INTO employee (name, position, email, phone, username, password)
+#VALUES ('Admin', 'Library manager', 'admin.joe@shelfsync.co.za', '1223553354', 'Admin1', 'Admin123');
 
-SELECT * FROM employee; 
+CREATE TABLE resources(
+	isbn VARCHAR(50) PRIMARY KEY NOT NULL,
+	UNIQUE KEY (ISBN),
+	title VARCHAR(50) NOT NULL,
+	authors VARCHAR(50) NOT NULL,
+	publisher VARCHAR(50) NOT NULL,
+	published_date DATE NOT NULL,
+	description VARCHAR(200) NOT NULL,
+	categories VARCHAR(50) NOT NULL,
+	language VARCHAR(10) NOT NULL,
+	url VARCHAR(100)
+);
+
+
+
+CREATE TABLE transactions(
+	transaction_id INT(4) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
+	isbn  VARCHAR(50) NOT NULL,
+	employee_id INT NOT NULL,
+	patron_id INT NOT NULL,
+	transaction_type VARCHAR(12) NOT NULL,
+	transaction_date DATE NOT NULL,
+	due_date DATE NOT NULL,
+	fee INT NOT NULL,
+	FOREIGN KEY (isbn) REFERENCES resources(isbn),
+	FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
+	FOREIGN key (patron_id) REFERENCES patrons(patron_id)
+);
+
+
+ALTER TABLE patrons
+ADD credit INT,
+ADD debit INT;
+
+SHOW TABLES;

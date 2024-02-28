@@ -10,6 +10,12 @@ app.secret_key = "078127ABC"
 
 def signin(username, password):
 
+	"""
+	Authenticate and open session for user
+
+	.....
+	"""
+
 	db = get_database_connection()
 	cursor = db.cursor()
 	try:

@@ -1,5 +1,11 @@
+"""
+DB connection
+"""
+
 import mysql.connector
 from flask import current_app
+
+"""Returns connection file"""
 
 def get_database_connection():
 	conn = mysql.connector.connect(

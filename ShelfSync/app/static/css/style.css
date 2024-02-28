@@ -55,6 +55,10 @@ header.fixed-top {
     margin-top: 20px;
 }
 
+.main-iframe {
+    border-radius: 5px;
+}
+
 iframe {
     width: 100%;
     height: 100%;
@@ -77,9 +81,14 @@ iframe {
     width: 50%;
     border-radius: 4px;
     margin: 10px 10px 10px 10px;
-    /*background-color: black;*/
 }
 
+#df {
+    background-color: #bdc7c5;
+    opacity: .6;
+    width: 100%;
+    padding: 10px;
+}
 
 .login-icon-home {
     display: flex;
@@ -107,6 +116,25 @@ iframe {
     text-align: center;
     margin: 2px;
 }
+
+.search-button {
+    background-color: #80d3c0;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    opacity: .7;
+    width: 10%;
+}
+
+.search-input {
+    border-bottom-right-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+
 
 /*list items across the application*/
 .lists-items:hover{
@@ -136,6 +164,7 @@ footer {
 /*iframe on main page (can be used for internal adverts*/
 .frame {
     background-image: url("../img/banner.jpg");
+    padding: 10px;
 }
 
 
@@ -144,6 +173,22 @@ footer {
     font-size: 10px;
 }
 
+.input-background {
+    background-color: transparent;
+    color: white !important;
+}
+
+.input-background:focus {
+    background-color: transparent;
+}
+
+.input-background::placeholder {
+    color: white !important;
+}
+
+.Sign_up-button {
+    margin-top: 10px;
+}
 
 /*top menu for mobile devices*/
 .mobile-menu {
