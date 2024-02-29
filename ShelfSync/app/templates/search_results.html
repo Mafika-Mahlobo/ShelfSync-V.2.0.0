@@ -47,10 +47,26 @@
         </form>
         <div>
             <ul class="list-group universal-menu-text">
-                {% for row in user %}
-                <li class=" lists-items list-group-item " >{{ row }}</li>
+                {% for book in volume %}
+                <li class=" lists-items list-group-item book_list" >
+                    <div class="image-holder">
+                        <img src="{{ book['imageLinks']['smallThumbnail'] }}">
+                    </div>
+                    <div class="content-holer">
+                        <div>
+                            <h4>{{ book["title"] }}</h4>
+                        </div>
+                        <div>
+                            {{ book["description"] }}
+                        </div>
+                        <div class="book_metadata">
+                          {{ book['industryIdentifiers'][0]['type'] }}: {{ book['industryIdentifiers'][0]['identifier'] }} 
+                        </div>      
+                    </div>
+                </li>
                 {% endfor %}
             </ul>
+
         </div>
     </div>
 

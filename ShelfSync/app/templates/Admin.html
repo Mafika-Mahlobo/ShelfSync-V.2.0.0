@@ -21,42 +21,43 @@
                     <span ><i class="logo bi bi-soundwave"></i><span class="logo-txt">ShelfSync...</span></span>
                 </div>
 
-                <div class="col-6 text-right menu-toggle">
-
-                    <div class="btn-group pc-menu">
-                        <i class="bi bi-person-lines-fill mobile-menu logo"></i>
+                <div class="col-6 text-right">
+                    <div class="btn-group">
+                        <i class="bi bi-person-lines-fill logo"></i>
                     </div>
                 </div>
             </div>
 
         </div>
     </header>
-    
-    <!-- iframe container -->
-    <!-- <div class="frame-container container">
-        <iframe src="{{ url_for('static', filename='slide.html') }}"></iframe>
-    </div> -->
-
-    <div class="body_container container">
+    <div class="logged-main-container">
+        <div class="search-container-logged">
+            <form class="input-group mb-3 submit-form">
+                <button class="input-group-text universal-menu-text ubmit-button btn btn-info search-button universal-menu-text "><i class="bi bi-search"></i></button>
+                <input type="text"  class="form-control focus-trigger-search universal-menu-text typing-seach input-background search-input" name="key_word" placeholder="Search features here">
+            </form>
+        </div>
+        <div class="employee-container-logged">
+            <div class="menu-container-logged">
+                <ul class="list-group ">
+                    <li class="list-group-item logged-menu-side bi bi-house-fill logged-menu-icons"><span class="logged-menu-txt">Home</span></li>
+                    <li class="list-group-item logged-menu-side bi bi-people"><span class="logged-menu-txt">Users</span></li>
+                    <li class="list-group-item logged-menu-side bi bi-bookshelf" ><span class="logged-menu-txt">Library Catalog</span></li>
+                    <li class="list-group-item logged-menu-side bi bi-pencil-square"><span class="logged-menu-txt">Write Blog</span></li>
+                    <li class="list-group-item logged-menu-side bi bi-person-rolodex"><span class="logged-menu-txt">Patrons</span></li>
+                </ul>
+            </div>
+            <div class="content-container-loggged">
+                <iframe src="assets.html" class="logged-iframe"></iframe>
+            </div>
+            
+        </div>
         
-    <div  class="text-container">
-        <h1 style="color: red;">Admin account</h1>
-
-    </div>
-
-    <div class="text-container">
-
-    </div>
-
-
     </div>
     
     <!-- Footer -->
     <footer>
-        <div class="universal-menu-text col-6">
-            <p>Contact us at: Mafika@ShelfSync.com | 123-456-7890</p>
-            <p>Developer: Mafika Mahlobo</p>
-        </div>
+        
     </footer>
 </body>
 </html>

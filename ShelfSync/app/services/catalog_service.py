@@ -10,6 +10,7 @@ from ..api.external_api import
 conn = get_database_connection()
 cursor = conn.cursor()
 
+#Add a book to DB
 def resource_add(book):
 	"""
 	Adds resource to DB
@@ -29,29 +30,43 @@ def resource_add(book):
 	link2 = ["thumbnail"]
 	thumbnails = str(link1)+","+str(link2)
 
-	sql = "INSERT INTO resources (isbn, title, authors, publisher, published_date, description, categories, language, url) VALUES (isbn_number, book_title, authors, publisher, published_date, description, categories, language, thumbnails)"
+	query = "INSERT INTO resources (isbn, title, authors, publisher, published_date, description, categories, language, url) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
 	try:
-		query = cursor.execute(sql)
-		if (query is not None):
+		response = cursor.execute(query, (isbn_number, book_title, authors, publisher, published_date, description, categories, language, thumbnails))
+
+		if (response is not None):
 			return 1
 		else:
 			return 0
+	except:
+		return "omething went wrong. Could not add item"
+
+	finally:
+
+		cursor.close()
+		conn.close()
 			
-def resource_edit():
 
-	"""
-	Edits information about resource.
 
-	...
-	"""
-	pass
-
-def resource_delete():
+#Delete book from DB
+def resource_delete(isbn):
 
 	"""
 	Removes resource from DB.
 
 	...
 	"""
-	pass
+	query = "DELETE * FROM resources WHERE 'isbn' = %s"
+
+	try:
+
+		response = cursor.execute(query, isbn)
+
+		if (response is not None):
+			return 1
+		return 0
+
+	except:
+
+		return "Something went wrong. Could not remove item"

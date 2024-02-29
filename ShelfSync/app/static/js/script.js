@@ -9,7 +9,7 @@ $(document).ready(function(){
     });
 
 
-    $(".typing-seach").on("input", function(){
+    /*$(".typing-seach").on("input", function(){
             $.ajax({
                 url: "/api/resources",
                 type: "POST",
@@ -21,7 +21,7 @@ $(document).ready(function(){
                 }
             });
     });
-
+*/
 
 //change view of main page
     function changeView(flag){

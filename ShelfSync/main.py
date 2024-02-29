@@ -19,11 +19,13 @@ def index():
 
 
 
-@app.route("/signin")
+@app.route("/api/signin", methods=["POST"])
 def login():
-	username = "Admin1"
-	password = "Admin123" #get credentials from front-end (HTML)
-	return signin(username, password)
+	if (request.method == "POST"):
+		username = request.form["username"]
+		password = request.form["password"]
+		return signin(username, password)
+	return "Could not sign you in."
 
 	
 @app.route("/signout")
@@ -38,9 +40,14 @@ def search():
 
 	if (request.method == "POST"):
 		search_key = request.form["key_word"]
-		#meta_data_key = 
-		return render_template("search_results.html", user=get_resource(search_key))
+		data = get_resource(search_key)
+		return render_template("search_results.html", volume=data)
 
+#add book
+@app.route("/api/resources/{resource_id}")
+def add_book():
+
+	pass
 
 
 if __name__ == "__main__":
