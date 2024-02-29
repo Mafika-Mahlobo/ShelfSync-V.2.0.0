@@ -90,6 +90,28 @@ iframe {
     padding: 10px;
 }
 
+.book_list {
+    display: flex;
+    background-color: white;
+    opacity: .9;
+}
+
+.image-holder {
+    width: 15%;
+    height: 100%;
+}
+
+.content-holer {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+}
+
+.book_metadata {
+    width: 100%;
+    height: auto;
+}
+
 .login-icon-home {
     display: flex;
     justify-content: center;

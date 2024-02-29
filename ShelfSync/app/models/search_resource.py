@@ -5,7 +5,7 @@ Data model for resource search
 import json
 from ..api.external_api import search_books
 
-def get_resource(keyword="", key="imageLinks"):
+def get_resource(keyword="", key="industryIdentifiers"):
 
 	"""
 	returns json file of organized data from extenal api

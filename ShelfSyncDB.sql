@@ -82,7 +82,7 @@ CREATE TABLE transactions (
 #INSERT INTO employee (name, position, email, phone, username, password)
 #VALUES ('Admin', 'Library manager', 'admin.joe@shelfsync.co.za', '1223553354', 'Admin1', 'Admin123');
 
-CREATE TABLE resources(
+/*CREATE TABLE resources(
 	isbn VARCHAR(50) PRIMARY KEY NOT NULL,
 	UNIQUE KEY (ISBN),
 	title VARCHAR(50) NOT NULL,
@@ -114,6 +114,7 @@ CREATE TABLE transactions(
 
 ALTER TABLE patrons
 ADD credit INT,
-ADD debit INT;
+ADD debit INT;*/
+
 
 SHOW TABLES;

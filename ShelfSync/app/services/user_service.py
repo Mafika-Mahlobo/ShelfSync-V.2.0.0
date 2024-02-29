@@ -32,9 +32,9 @@ def signin(username, password):
 			username = session.get("username")
 			isadmin_str = session.get("isAdmin")
 
-			isadmin = isadmin_str == True
+			
 
-			if (isadmin):
+			if (isadmin_str == 1):
 				return render_template("Admin.html", username=username)
 			else:
 				return render_template("Employee.html", username=username)
