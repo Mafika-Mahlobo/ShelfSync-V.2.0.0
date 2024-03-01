@@ -80,7 +80,7 @@ iframe {
     height: auto;
     width: 50%;
     border-radius: 4px;
-    margin: 10px 10px 10px 10px;
+    margin-top: 15px;
 }
 
 .blog-container {
@@ -238,6 +238,7 @@ footer {
     height: auto;
     margin-top: 2%;
     margin-left: .9% !important;
+    visibility: hidden;
 }
 
 .employee-container-logged {
@@ -292,6 +293,125 @@ footer {
     border-radius: 4px;
 }
 
+.inside-frame-logged {
+    background-color: #97b0b0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.booklist-container {
+    width: 99%;
+    min-height: 70%;
+    height: auto;
+    margin: 0 1px 0 1px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-list-controls {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+}
+
+.toogle-support-div {
+    width: 90%;
+    height: 100%;
+}
+
+.toogle-container {
+    height: 100%;
+    width: 10%;
+    min-width: 5%;
+}
+
+.logged-list-container {
+    width: 100%;
+    height: 90%;
+    background-color: grey;
+    overflow: auto;
+    border-radius: 5px;
+    padding: 0;
+    margin-left: 3px;
+}
+
+.logged-list-container::-webkit-scrollbar{
+    display: none;
+}
+
+.logged-list {
+    margin: 10px 0px 10px 0px;
+    border-radius: 5px;
+}
+
+.list-item-logged {
+    margin: 0 !important;
+    width: 95%;
+}
+
+.catalog-options {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.buttons-main-logged {
+    width: 40%;
+    height: 100%;
+    margin-left: 3px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-info-logged {
+    width: 59%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: white;
+    padding: 0% 2% 0 2%;
+    /*font-size: 5px;*/
+    display: flex;
+    flex-direction: row;
+}
+
+.bottom-transaction-buttons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+    background-color: white;
+}
+
+/*.logged-crud-buttons {
+    margin: 15px;
+    padding: 5px;
+    border-radius: 15px;
+    border: solid 1px darkgray;
+}*/
+
+.transaction-bttons {
+    margin: 15px;
+    padding: 5px;
+    border-radius: 15px;
+    width: 40%;
+    border: solid 1px darkgray;
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+    opacity: 1 !important;
+}
+
+.book-details-container {
+    height: 100%;
+    width: 50%;
+}
 
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -312,12 +432,11 @@ footer {
 .mobile-menu {
         visibility: visible;
         float: none;
-    }
 
-    .pc-menu {
+}
+
+.pc-menu {
         visibility: hidden;
-    }
-
 }
 
 

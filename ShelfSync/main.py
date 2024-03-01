@@ -14,8 +14,8 @@ app.secret_key = "078127ABC"
 
 @app.route('/')
 def index():
-	vid_path = "app/static/media/img/"
-	return render_template("index.html", vid=vid_path)
+	img = "app/static/media/img/"
+	return render_template("index.html", vid=img)
 
 
 
@@ -35,7 +35,7 @@ def logout():
 
 
 #Main page book search
-@app.route("/api/resources", methods=["POST"])
+@app.route("/api/search", methods=["POST"])
 def search():
 
 	if (request.method == "POST"):
@@ -48,6 +48,11 @@ def search():
 def add_book():
 
 	pass
+
+@app.route("/api/navigate")
+def menu_navigate():
+	pass
+
 
 
 if __name__ == "__main__":

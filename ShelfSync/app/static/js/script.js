@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
     $(".focus-trigger-login").focus(function(){
         changeView(1);
     });
@@ -9,19 +10,12 @@ $(document).ready(function(){
     });
 
 
-    /*$(".typing-seach").on("input", function(){
-            $.ajax({
-                url: "/api/resources",
-                type: "POST",
-                success: function(data){
-                    $("#temp-id").text(data)
-                },
-                error: function(err){
-                    console.log(err)
-                }
-            });
+    /*main menu navigation*/
+    $(".menu-select-assets").click("input", function(){
+        $(".logged-iframe").attr("src", "../static/iframe_pages/assets.html");
+        $(".search-container-logged").css("visibility", "visible");
     });
-*/
+
 
 //change view of main page
     function changeView(flag){

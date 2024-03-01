@@ -11,7 +11,7 @@
 <body class="workspace-body">
 
     <!-- Header -->
-    <header class="fixed-top">
+    <header class="fixed-top" id="dis">
 
         <div class="header-container">
 
@@ -40,15 +40,15 @@
         <div class="employee-container-logged">
             <div class="menu-container-logged">
                 <ul class="list-group ">
-                    <li class="list-group-item logged-menu-side bi bi-house-fill logged-menu-icons"><span class="logged-menu-txt">Home</span></li>
-                    <li class="list-group-item logged-menu-side bi bi-people"><span class="logged-menu-txt">Users</span></li>
-                    <li class="list-group-item logged-menu-side bi bi-bookshelf" ><span class="logged-menu-txt">Library Catalog</span></li>
-                    <li class="list-group-item logged-menu-side bi bi-pencil-square"><span class="logged-menu-txt">Write Blog</span></li>
-                    <li class="list-group-item logged-menu-side bi bi-person-rolodex"><span class="logged-menu-txt">Patrons</span></li>
+                    <li class="list-group-item logged-menu-side bi bi-house-fill logged-menu-icons" data-item_id="1"><span class="logged-menu-txt">Home</span></li>
+                    <li class="list-group-item logged-menu-side bi bi-people"><span class="logged-menu-txt">Manage Users</span></li>
+                    <li class="list-group-item logged-menu-side bi bi-bookshelf menu-select-assets"><span class="logged-menu-txt">Library Catalog</span></li>
+                    <li class="list-group-item logged-menu-side bi bi-person-rolodex" data-item_id="5"><span class="logged-menu-txt">Manage Patrons</span></li>
+                    <li class="list-group-item bi bi-gear logged-menu-side logged-menu-icons" data-item_id="4"><span class="logged-menu-txt">Settings</span></li>
                 </ul>
             </div>
             <div class="content-container-loggged">
-                <iframe src="assets.html" class="logged-iframe"></iframe>
+                <iframe src="{{ path }}" class="logged-iframe"></iframe>
             </div>
             
         </div>

@@ -37,7 +37,7 @@
     
     <!-- iframe container -->
     <div class="frame-container container">
-        <iframe class="main-iframe" src="{{ url_for('static', filename='slide.html') }}"></iframe>
+        <iframe class="main-iframe" src="{{ url_for('static', filename='iframe_pages/slide.html') }}"></iframe>
     </div>
 
     <div class="body_container container">
@@ -61,7 +61,7 @@
     </div>
 
     <div class="text-container">
-        <form action="/api/resources" method="post" class="input-group mb-3 submit-form">
+        <form action="/api/search" method="post" class="input-group mb-3 submit-form">
             <button class="input-group-text universal-menu-text ubmit-button btn btn-info search-button universal-menu-text "><i class="bi bi-search"></i></button>
             <input type="text"  class="form-control focus-trigger-search universal-menu-text typing-seach input-background search-input" name="key_word" placeholder="Search books by title, author or ISBN">
         </form>
@@ -75,9 +75,6 @@ It is a long established fact that a reader will be distracted by the readable c
 
         </div>
     </div>
-
-
-    <span></span>
 
 
     </div>
