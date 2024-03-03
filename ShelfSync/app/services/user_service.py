@@ -1,12 +1,17 @@
 """
 Module for handling user related logic
+
+
+Notes:
+	this is for employee sign-in. change name.
 """
+
 
 from flask import Flask, render_template, session, request
 from .. import app
 from ..utils.database import get_database_connection
 
-app.secret_key = "078127ABC"
+app.secret_key = "078127ABC" # move to database file to avoid duplicating
 
 def signin(username, password):
 

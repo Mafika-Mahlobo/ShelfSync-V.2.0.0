@@ -14,6 +14,8 @@ $(document).ready(function(){
     $(".menu-select-assets").click("input", function(){
         $(".logged-iframe").attr("src", "../static/iframe_pages/assets.html");
         $(".search-container-logged").css("visibility", "visible");
+        $(".top-crud-buttons").css("visibility", "visible");
+        $(".inside-frame-logged").css("visibility", "visible");
     });
 
 

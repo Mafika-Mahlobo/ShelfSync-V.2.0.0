@@ -6,7 +6,7 @@
     <title>Home Page</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="../static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="workspace-body">
 
@@ -46,9 +46,53 @@
                     <li class="list-group-item logged-menu-side bi bi-person-rolodex" data-item_id="5"><span class="logged-menu-txt">Manage Patrons</span></li>
                     <li class="list-group-item bi bi-gear logged-menu-side logged-menu-icons" data-item_id="4"><span class="logged-menu-txt">Settings</span></li>
                 </ul>
+                <div class="top-crud-buttons">
+                    <form action="/api/resources" method="post">
+                        <button class="logged-crud-buttons submit-button btn btn-info sub universal-menu-text" name="button" value="add">Add Book</button>
+                        <button class="logged-crud-buttons submit-button btn btn-info sub universal-menu-text" name="button" value="delete">Delete Book</button>
+                        <button class="logged-crud-buttons submit-button btn btn-info sub universal-menu-text" name="button" value="update">Update Info</button>
+                    </form>
+                    <form action="/api/resources/<resource_id>" method="delete">
+                        
+                    </form>
+                </div>
             </div>
             <div class="content-container-loggged">
-                <iframe src="{{ path }}" class="logged-iframe"></iframe>
+                <div class="inside-frame-logged">
+                    <div class="booklist-container">
+                        <div class="top-list-controls">
+                            <div class="toogle-support-div"></div>
+                            <div class="toogle-container"></div>
+                        </div>
+                        <div class="logged-list-container">
+                            <ul class="logged-list">
+                                <li class="lists-items list-group-item book_list list-item-logged"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="catalog-options">
+                        <div class="book-info-logged">
+                            <div class="book-details-container">
+                                <p>ISBN Number: </p>
+                                <p>Genre: </p>
+                                <p>Avalability Status:</p>
+                            </div>
+                            <div class="book-details-container">
+                                <p>Leased To: </p>
+                                <p>Return Date: </p>
+                                <p>Amount: </p>
+                            </div>
+                        </div>
+                        <div class="buttons-main-logged">
+                            <div class="bottom-transaction-buttons">
+                                <form>
+                                    <button class="transaction-bttons submit-button btn btn-info sub universal-menu-text">Check In</button>
+                                    <button class="transaction-bttons submit-button btn btn-info sub universal-menu-text">Check Out</button>
+                                </form>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
             </div>
             
         </div>
@@ -57,9 +101,11 @@
     
     <!-- Footer -->
     <footer>
+        <span>{{ error }}</span>
+        <span>{{ sucess }}</span>
         
     </footer>
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="../static/js/script.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>

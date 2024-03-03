@@ -255,6 +255,8 @@ footer {
     width: auto;
     min-width: 20%;
     margin-top: 3%;
+    display: flex;
+    flex-direction: column;
 }
 
 .content-container-loggged {
@@ -285,7 +287,7 @@ footer {
     margin-left: 8px;
 }
 
-.logged-iframe {
+.logged-container {
     margin: 3px;
     width: 99%;
     height: 99%;
@@ -299,6 +301,7 @@ footer {
     height: 100%;
     display: flex;
     flex-direction: column;
+    visibility: hidden;
 }
 
 .booklist-container {
@@ -389,13 +392,6 @@ footer {
     background-color: white;
 }
 
-/*.logged-crud-buttons {
-    margin: 15px;
-    padding: 5px;
-    border-radius: 15px;
-    border: solid 1px darkgray;
-}*/
-
 .transaction-bttons {
     margin: 15px;
     padding: 5px;
@@ -411,6 +407,14 @@ footer {
 .book-details-container {
     height: 100%;
     width: 50%;
+}
+
+.top-crud-buttons {
+    height: 38%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 12%;
+    visibility: hidden;
 }
 
 

@@ -61,7 +61,12 @@
                         </div>
                         <div class="book_metadata">
                           {{ book['industryIdentifiers'][0]['type'] }}: {{ book['industryIdentifiers'][0]['identifier'] }} 
-                        </div>      
+                        </div>  
+                        <div class="search_action_button">
+                            <form action="{{ url_for('add_book', resource_id=book['industryIdentifiers'][0]['identifier']) }}" method="post">
+                                <button class="Add_button_search_list logged-crud-buttons submit-button btn btn-info sub universal-menu-text">Add To Catalog</button>
+                            </form>
+                        </div>    
                     </div>
                 </li>
                 {% endfor %}
