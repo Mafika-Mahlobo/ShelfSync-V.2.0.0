@@ -18,6 +18,25 @@ $(document).ready(function(){
         $(".inside-frame-logged").css("visibility", "visible");
     });
 
+    $("#add_book_button").click(function(){
+        $.ajax({
+            url: "/api/resources",
+            method: "POST",
+            success: function(){
+                window.location.href = "{{ url_for('search_book') }}"
+            },
+        });
+    });
+
+    $("#delete_confirm").click(function(){
+        $(".confirmation-box").css("visibility", "visible");
+    });
+
+    $("#delete-cancel").click(function(){
+        $(".confirmation-box").css("visibility", "hidden");
+    });
+
+
 
 //change view of main page
     function changeView(flag){

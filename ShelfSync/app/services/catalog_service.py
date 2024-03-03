@@ -19,8 +19,8 @@ def add_resource(book):
 	
 	
 	isbn_number = book[0]["industryIdentifiers"][0].get('identifier', '') if book and book[0].get("industryIdentifiers") else ''
-	book_title = book[0]["title"]
-	language = book[0]["language"]
+	book_title = book[0].get('title', '') if book and book[0].get("title") else ''
+	language = book[0].get('language') if book and book[0].get('language') else ''
 
 	query = "INSERT INTO resources (isbn, title, language) VALUES (%s, %s, %s)"
 
@@ -52,16 +52,25 @@ def delete_resource(isbn):
 
 	...
 	"""
-	query = "DELETE * FROM resources WHERE 'isbn' = %s"
+	conn = get_database_connection()
+	cursor = conn.cursor()
+
+	query = "DELETE FROM resources WHERE `isbn` = %s"
 
 	try:
 
-		cursor.execute(query, (isbn))
+		response = cursor.execute(query, (str(isbn),))
 
-		if (cursor.rowcount > 0):
-			return 1
-		return 0
+		conn.commit()
 
-	except:
+		if response is None:
+			return "Book deleted"
+		return "Could not delete book"
 
-		return "Something went wrong. Could not remove item"
+	except mysql.connector.Error as err:
+
+		return f"System Error: {err}" 
+
+	finally:
+		cursor.close()
+		conn.close()
