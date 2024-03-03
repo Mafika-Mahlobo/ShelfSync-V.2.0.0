@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
 
-    $(".focus-trigger-login").focus(function(){
+    /*$(".focus-trigger-login").focus(function(){
         changeView(1);
-    });
+    });*/
 
     $(".focus-trigger-search").focus(function(){
          changeView(2);
@@ -26,6 +26,14 @@ $(document).ready(function(){
                 window.location.href = "{{ url_for('search_book') }}"
             },
         });
+    });
+
+    $("#register-button").click(function(){
+        $(".registration-box").css("visibility", "visible");
+    });
+
+    $("#close-button-register").click(function(){
+        $(".registration-box").css("visibility", "hidden");
     });
 
     $("#delete_confirm").click(function(){

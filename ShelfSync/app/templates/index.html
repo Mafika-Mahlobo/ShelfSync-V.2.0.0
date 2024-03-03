@@ -47,16 +47,17 @@
 
         <form action="/api/signin" method="post">
             <div class="input-group inputs">
-                <input class="submit-button form-control focus-trigger-login universal-menu-text input-background" type="text" name="username" placeholder="Username">
+                <input class="submit-button form-control focus-trigger-login universal-menu-text input-background" required type="text" name="username" placeholder="Username">
             </div>
             <div class="input-group inputs" id="temp-id">
-                <input class="submit-button form-control universal-menu-text input-background" type="password" name="password" placeholder="Password">
+                <input class="submit-button form-control universal-menu-text input-background" required type="password" name="password" placeholder="Password">
             </div>
             <div class="input-group inputs">
                 <button class="submit-button btn btn-info sub universal-menu-text">Sign In</button>
-                <button class="btn btn-light universal-menu-text Sign_up-button">Sign-Up</button>
             </div>
         </form>
+
+        <button class="btn btn-light universal-menu-text Sign_up-button" id="register-button">Sign-Up</button>
 
     </div>
 
@@ -76,6 +77,42 @@ It is a long established fact that a reader will be distracted by the readable c
         </div>
     </div>
 
+    <div class="registration-box confirmation-box">
+        <div class="registration-form-container">
+            <form action="{{ url_for('register_patron') }}" method="post">
+                <div class="form-header-container">
+                    <h6>Patron registration</h6>
+                </div>
+                <div>
+                    <input type="text" name="name" required class="form-inputs" placeholder="First name">
+                    <input type="text" name="surname" required class="form-inputs" placeholder="Surname">
+                    <input type="email" name="email" class="form-inputs" required placeholder="Email address">
+                    <input type="text" name="phone" class="form-inputs" required placeholder="Cellphone number">
+                </div>
+
+                <div class="address-container">
+                    <h8>Address</h8>
+                    <input type="text" required name="address-line1" class="form-inputs" placeholder="House number">
+                    <input type="text" name="address-line2" class="form-inputs" placeholder="Street name">
+                    <input type="text" name="address-line3" class="form-inputs" placeholder="Town / city">
+                    <input type="text" name="address-line4" class="form-inputs" placeholder="Zip code" >
+                </div>
+                <div class="login-container">
+                    <h8>Create password</h8>
+                    <div class="sub-login-container">
+                        <input type="password" name="password" class="form-inputs" placeholder="Password">
+                    </div>
+                </div>
+                <div>
+                    <button class="submit-button btn btn-info sub universal-menu-text">Register</button>
+                </div>
+            </form>
+        </div>
+        <div class="registration-form-buttons">
+            <button class="submit-button btn btn-info sub universal-menu-text" id="close-button-register">Close</button>
+        </div>
+    </div>
+
 
     </div>
     
@@ -83,7 +120,6 @@ It is a long established fact that a reader will be distracted by the readable c
     <footer>
         <div class="universal-menu-text col-6">
             <p>{{ error }}</p>
-            <p>Developer: Mafika Mahlobo</p>
         </div>
     </footer>
 </body>

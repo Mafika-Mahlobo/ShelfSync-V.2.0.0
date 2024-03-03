@@ -20,15 +20,25 @@ def register(patron_info):
 	conn = get_database_connection()
 	cursor = conn.cursor()
 
-	query = "INSERT INTO patrons (`name`, `address`, `email`, `phone`, `username`, `password`, `credit`, `debit`) VALUES (%s, %s, %s, %s, %s, %d, %d, %d)"
+	check_query = "SELECT * FROM patrons WHERE `email` = %s"
+
+	cursor.execute(check_query, (patron_info[2],))
+
+	existing_user = cursor.fetchall()
+
+	if existing_user:
+		cursor.close()
+		return "User aleady registered"
+
+	query = "INSERT INTO patrons (`name`, `address`, `email`, `phone`, `username`, `password`, `credit`, `debit`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
 
 	try:
 
-		response = cursor.execute(query, patron_info)
+		response = cursor.execute(query, (patron_info))
 
 		conn.commit()
 
-		if (response.rowcount > 0):
+		if (cursor.rowcount > 0):
 			return "Registation processed"
 		return "Registration failed"
 

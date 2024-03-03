@@ -98,7 +98,7 @@
         <div class="confirmation-box confirmation-box-delete">
             <div class="confirmation-box-top">
                 <form action="{{ url_for('delete_book') }}" method="post">
-                    <input type="text"  class="form-control focus-trigger-search universal-menu-text input-background search-input" name="book_id" placeholder="Enter ISBN number or title">
+                    <input type="text"  class="form-control focus-trigger-search universal-menu-text input-background search-input" required name="book_id" placeholder="Enter ISBN number or title">
                     <button class="submit-button btn btn-info sub universal-menu-text delete-buttons">Delete Book</button>
                 </form>
             </div>
