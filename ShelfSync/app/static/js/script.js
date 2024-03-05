@@ -37,12 +37,29 @@ $(document).ready(function(){
     });
 
     $("#delete_confirm").click(function(){
-        $(".confirmation-box").css("visibility", "visible");
+        $("#confirmation-box-delete-id").css("visibility", "visible");
     });
 
     $("#delete-cancel").click(function(){
         $(".confirmation-box").css("visibility", "hidden");
     });
+
+    $(".menu-select-users").click(function(){
+        $("#registration-box-employee").css("visibility", "visible");
+    });
+
+    $("#toggleButton").val(0);
+
+    $("#toggleButton").change(function(){
+
+        if ($(this).is(":checked")){
+
+            $(this).val(1);
+        }else{
+
+             $(this).val(0);
+        }
+    })
 
 
 

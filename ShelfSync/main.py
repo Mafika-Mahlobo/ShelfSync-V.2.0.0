@@ -8,6 +8,7 @@ from app.utils.database import get_database_connection
 from app.services.user_service import signin
 from app.services.catalog_service import add_resource, delete_resource
 from app.services.patron_register import register
+from app.services.employee_register import add_employee
 from app.models.search_resource import get_resource
 import hashlib
 
@@ -114,6 +115,36 @@ def register_patron():
 
 		response = register((name, address, email, phone_number, email, hashed_password, 0, 0))
 		return render_template("index.html", error=response)
+
+@app.route("/api/employee_register", methods=["POST"])
+def register_user():
+
+	if request.method == "POST":
+
+		md5_hash = hashlib.md5()
+
+		name =  f"{request.form["name"]} {request.form["surname"]}"
+		possition =  request.form["position"]
+		email =  request.form["email"]
+		phone_number = request.form["phone"]
+		username = request.form["email"]
+		password = request.form["password"]
+
+		if "toggleButton" in request.form:
+			if request.form["toggleButton"] == "No":
+				is_admin = 0
+			else:
+				is_admin = 1
+		else:
+			is_admin = 0
+
+		md5_hash.update(password.encode("utf-8"))
+		hashed_password = md5_hash.hexdigest()
+
+		data = (name, possition, email, phone_number, username, hashed_password, is_admin)
+		response = add_employee(data)
+		return render_template("Admin.html", sucess=response)
+
 
 
 if __name__ == "__main__":

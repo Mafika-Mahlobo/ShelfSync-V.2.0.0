@@ -45,6 +45,10 @@ def register(patron_info):
 	except mysql.connector.Error as err:
 		return err
 
+	finally:
+		cursor.close()
+		conn.close()
+
 
 
 

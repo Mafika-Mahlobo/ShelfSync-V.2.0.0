@@ -41,7 +41,7 @@
             <div class="menu-container-logged">
                 <ul class="list-group ">
                     <li class="list-group-item logged-menu-side bi bi-house-fill logged-menu-icons" data-item_id="1"><span class="logged-menu-txt">Home</span></li>
-                    <li class="list-group-item logged-menu-side bi bi-people"><span class="logged-menu-txt">Manage Users</span></li>
+                    <li class="list-group-item logged-menu-side bi bi-people menu-select-users"><span class="logged-menu-txt">Manage Users</span></li>
                     <li class="list-group-item logged-menu-side bi bi-bookshelf menu-select-assets"><span class="logged-menu-txt">Library Catalog</span></li>
                     <li class="list-group-item logged-menu-side bi bi-person-rolodex" data-item_id="5"><span class="logged-menu-txt">Manage Patrons</span></li>
                     <li class="list-group-item bi bi-gear logged-menu-side logged-menu-icons" data-item_id="4"><span class="logged-menu-txt">Settings</span></li>
@@ -95,7 +95,7 @@
             </div>
             
         </div>
-        <div class="confirmation-box confirmation-box-delete">
+        <div class="confirmation-box confirmation-box-delete" id="confirmation-box-delete-id">
             <div class="confirmation-box-top">
                 <form action="{{ url_for('delete_book') }}" method="post">
                     <input type="text"  class="form-control focus-trigger-search universal-menu-text input-background search-input" required name="book_id" placeholder="Enter ISBN number or title">
@@ -106,7 +106,59 @@
                 <button class="submit-button btn btn-info sub universal-menu-text Cancel-buttons" id="delete-cancel">Cancel</button>
             </div>
         </div>
-        
+
+        <div class="registration-box confirmation-box" id="registration-box-employee">
+            <div class="employee-add-container registration-form-container">
+                <div class="side-form-user-add">
+                    <form action="{{ url_for('register_user') }}" method="post" >
+                        <div class="side-form">
+
+                            <h8 class="add-user-headings">Add user</h8>
+                            <input type="text" name="name" required class="form-inputs add-user-inputs" placeholder="First name">
+                            <input type="text" name="surname" required class="form-inputs add-user-inputs" placeholder="Surname">
+                            <input type="email" name="email" class="form-inputs add-user-inputs" required placeholder="Email address">
+                            <input type="text" name="phone" class="form-inputs add-user-inputs" required placeholder="Cellphone number">
+                            <input type="text" name="position" class="form-inputs add-user-inputs" placeholder="Position">
+
+                            <div class="is_admin-unput">
+                                <label class="switch">Site admin</label>
+                                <input type="checkbox" id="toggleButton" name="toggleButton" >
+                            </div>
+  
+                            <h8 class="add-user-headings">Create password</h8>
+                             <input type="password" name="password" class="form-inputs add-user-inputs" placeholder="Password">
+                        </div>
+                        <div class="registration-form-buttons">
+                            <button class="submit-button btn btn-info sub universal-menu-text">Add</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="user-manager-container">
+                    <div class="add-user-search-container">
+                         <form action="" method="" class="input-group mb-3 submit-form">
+                            <button class="input-group-text universal-menu-text ubmit-button btn btn-info search-button universal-menu-text "><i class="bi bi-search"></i></button>
+                            <input type="text"  class="form-control focus-trigger-search universal-menu-text typing-seach input-background search-input" name="user_key" placeholder="Search user">
+                        </form>
+                    </div>
+                    <div class="add-user-list">
+                       <li class="lists-items list-group-item book_list list-item-logged add-user-scroll_list add-user-content-container">
+                               <div class="add-user-text-container">
+                                   User1
+                               </div>
+                               <div class="add-user-buttons-container">
+                                <button class="submit-button btn btn-info sub universal-menu-text">Edit</button>
+                                <form>
+                                    <button class="submit-button btn btn-info sub universal-menu-text">Delete</button>
+                                </form>
+                               </div>
+                       </li>
+                    </div>
+            </div>
+        </div>
+
+        <div class="registration-form-buttons">
+                <button class="submit-button btn btn-info sub universal-menu-text" id="close-button-register">Close</button>
+            </div>
     </div>
     
     <!-- Footer -->
@@ -119,3 +171,20 @@
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+
+
+ 
+                    
+                    
+                    
+                    
+                      
+
+                     
+
+                     <div>
+                    
+                </div>
+
+                

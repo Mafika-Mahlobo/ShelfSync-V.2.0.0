@@ -527,6 +527,98 @@ footer {
     background-color: red !important;
 }
 
+.employee-add-container {
+    display: flex;
+    flex-direction: row;
+    padding: 2px !important;
+    height: 394px;
+}
+
+.side-form-user-add {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1px !important;
+}
+
+.user-manager-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-form {
+    display: flex !important;
+    flex-direction: column; !important;
+}
+
+.add-user-container {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.add-user-search-container {
+    width: 100%;
+    height: 8%;
+}
+
+.add-user-headings {
+    padding: 2px;
+}
+
+.add-user-inputs {
+    width: 90%;
+}
+
+.add-user-list {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: auto !important;
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+    background-color: grey;
+    opacity: .7;
+    margin-left: 5px;
+    width: 98%;
+    border-radius: 6px;
+}
+
+.add-user-list::-webkit-scrollbar {
+    display: none;
+}
+
+.add-user-scroll_list {
+    margin-left: 10px !important;
+    padding: 0 !important;
+}
+
+.add-user-content-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.add-user-text-container {
+    width: 70%;
+    height: 100%;
+}
+
+.add-user-buttons-container {
+    width: 30%;
+    height: 100%;
+    padding: 3px;
+    display: flex;
+    flex-direction: row;
+}
+
+.is_admin-unput {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px !important;
+    padding: 2px;
+}
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
