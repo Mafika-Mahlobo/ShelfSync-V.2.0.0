@@ -59,8 +59,184 @@ $(document).ready(function(){
 
              $(this).val(0);
         }
-    })
+    });
 
+
+    $("#add-user-typing").on("input", function(){
+        var key = $("#add-user-typing").val();
+        get_employee(key);
+
+    });
+
+
+    function update(value){
+        var values = value.split(",");
+        var is_admin = "";
+
+        $("#update-name").val(values[1]);
+       /* $("#update-surname").val(values[1]);*/
+        $("#update-email").val(values[3]);
+        $("#update-phone").val(values[4]);
+        $("#update-posistion").val(values[2]);
+        $("#update-heading").text("Update user information");
+        $("#update-submit").prop("disabled", false);
+    }
+
+    function delete_employee(employee_id){
+
+        $.ajax({
+            url: "/api/delete_employee/<employee_id>",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({employee_id: employee_id}),
+            success: function(response){
+                alert("Employee deleted");
+            }
+        });
+
+    }
+
+    function get_books(keyword){
+
+        $.ajax({
+            url: "/api/local_books/<key_word>",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({key_word: keyword}),
+            success: function(response){
+                $(".logged-list").empty();
+
+                $.each(response, function(index, row){
+                    var item = `<li class="lists-items list-group-item book_list list-item-logged" value="${row[0]}">${row[1]}</li>`;
+
+                    $(".logged-list").append(item);
+
+                });
+            }
+        });
+    }
+
+
+    $("#typing-search-resource").on("input", function(){
+        var key = $("#typing-search-resource").val()
+
+        get_books(key);
+    });
+
+
+    //fetch employees
+    function get_employee(keyword){
+
+        $.ajax({
+            url: "/api/user_search",
+            type: "POST",
+            data: {user_key: keyword},
+            success: function(response){
+                
+                $("#view-add-employee").empty();
+
+                $.each(response, function(index, row){
+                    var item = `<li class="lists-items list-group-item book_list list-item-logged add-user-scroll_list add-user-content-container">
+                               <div class="add-user-text-container">
+                                   ${row[1]}
+                               </div>
+                               <div class="add-user-buttons-container">
+                                    <button class="submit-button btn btn-info sub universal-menu-text" id="edit-button" value="${row}">Edit</button>
+                                    <button class="submit-button btn btn-info sub universal-menu-text" id="delete-employee" value="${row[3]}">Delete</button>
+                               </div>
+                       </li>`;
+
+                $("#view-add-employee").append(item);
+                });
+            }
+        });
+    }
+
+    $("#view-add-employee").on("click", "#edit-button", function() {
+                update(this.value);
+    });
+
+    $("#view-add-employee").on("click", "#delete-employee", function() {
+                delete_employee(this.value);
+    });
+
+
+    $("#update-submit").click(function(event){
+        event.preventDefault();
+
+        var name = $("#update-name").val();
+        var surname = $("#update-surname").val();
+        var email = $("#update-email").val();
+        var phone = $("#update-phone").val();
+        var password = $("#update-password").val();
+        var position = $("#update-posistion").val();
+        var is_admin = $("#toggleButton").val();
+
+        $.ajax({
+            url: "/api/update_employee/<employee_info>",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+                name: name,
+                surname: surname,
+                email: email,
+                phone: phone,
+                position: position,
+                password: password,
+                is_admin: is_admin
+            }),
+            success: function(response){
+                alert("Emplyoyee information updated");
+            }
+        });
+    });
+
+
+
+    $("#logout").click(function(){
+        $("#signout-form").submit(); 
+    });
+
+
+$.event.special.contentChanged = {
+    setup: function() {
+        var $this = $(this),
+            $origHtml = $this.html();
+
+        $this.data('origHtml', $origHtml);
+        $this.on('DOMSubtreeModified', function() {
+            if($this.data('origHtml') !== $this.html()) {
+                $this.trigger('contentChanged');
+            }
+        });
+    },
+    teardown: function() {
+        $(this).off('DOMSubtreeModified');
+    }
+};
+
+
+$(".success-msg").hover(function(){
+    $("#success").delay(3000).fadeOut('slow');
+});
+
+$('.success-msg').on('contentChanged', function() {
+    if ($(this).html().trim() !== '') {
+
+        //Do
+    } else {
+
+        $("#success").delay(3000).fadeOut('slow');
+        $("#error").delay(3000).fadeOut('slow');
+    }
+});
+
+
+$(".success-msg").click(function(){
+    $('.success-msg').trigger('contentChanged');
+});
+
+$('.success-msg').trigger('contentChanged');
 
 
 //change view of main page

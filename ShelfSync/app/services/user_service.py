@@ -10,6 +10,7 @@ Notes:
 from flask import Flask, render_template, session, request
 from .. import app
 from ..utils.database import get_database_connection
+import hashlib
 
 app.secret_key = "078127ABC" # move to database file to avoid duplicating
 
@@ -21,12 +22,16 @@ def signin(username, password):
 	.....
 	"""
 
+	md5_hash = hashlib.md5()
+	md5_hash.update(password.encode("utf-8"))
+	hashed_password = md5_hash.hexdigest()
+
 	db = get_database_connection()
 	cursor = db.cursor()
 	try:
 		
 		query = "SELECT * FROM employee WHERE `username` = %s COLLATE utf8mb4_bin AND `password` = %s COLLATE utf8mb4_bin"
-		cursor.execute(query, (username, password))
+		cursor.execute(query, (username, hashed_password))
 
 		user_data = cursor.fetchall()
 

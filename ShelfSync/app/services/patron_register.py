@@ -39,8 +39,8 @@ def register(patron_info):
 		conn.commit()
 
 		if (cursor.rowcount > 0):
-			return "Registation processed"
-		return "Registration failed"
+			return 1
+		return 0
 
 	except mysql.connector.Error as err:
 		return err

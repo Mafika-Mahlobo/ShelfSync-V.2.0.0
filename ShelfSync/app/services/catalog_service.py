@@ -44,6 +44,7 @@ def add_resource(book):
 			
 
 
+
 #Delete book from DB
 def delete_resource(isbn):
 
@@ -74,3 +75,55 @@ def delete_resource(isbn):
 	finally:
 		cursor.close()
 		conn.close()
+
+
+def view_resource(keyword=None):
+
+	"""
+	return a books matching keyword
+
+	Args:
+	 """
+
+	conn = get_database_connection()
+	cursor = conn.cursor()
+
+	if not keyword is None:
+
+
+		query = "SELECT * FROM resources WHERE `isbn` LIKE %s OR `title` LIKE %s"
+
+		try:
+
+			cursor.execute(query, ("%"+keyword+"%", "%"+keyword+"%"))
+
+			data = cursor.fetchall()
+
+			if (cursor.rowcount > 0):
+				return data
+			return 0
+
+		except mysql.connector.Error as err:
+
+			return f"Errror: {err}"
+
+		finally:
+			cursor.close()
+			conn.close()
+	else:
+
+		query_all = "SELECT * FROM resources"
+
+		try:
+
+			cursor.execute(query_all)
+
+			data_all = cursor.fetchall()
+
+			if (cursor.rowcount > 0):
+				return data
+			return 0
+
+		except mysql.connector.Error as err:
+
+			return f"Error: {err}"

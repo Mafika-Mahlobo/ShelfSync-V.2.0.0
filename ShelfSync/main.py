@@ -2,13 +2,14 @@
 Entry point to the application.
 """
 
-from flask import Flask, render_template, session, request
+from flask import Flask, render_template, session, request, flash, redirect, url_for
 from app import app
 from app.utils.database import get_database_connection
 from app.services.user_service import signin
-from app.services.catalog_service import add_resource, delete_resource
+from app.services.catalog_service import add_resource, delete_resource, view_resource
 from app.services.patron_register import register
-from app.services.employee_register import add_employee
+from app.services.employee_register import add_employee, update_employee_info, delete_employee_info
+from app.services.user_search import search_emplyoyee
 from app.models.search_resource import get_resource
 import hashlib
 
@@ -114,6 +115,10 @@ def register_patron():
 		hashed_password = md5_hash.hexdigest()
 
 		response = register((name, address, email, phone_number, email, hashed_password, 0, 0))
+		if response == 1:
+			return render_template("index.html", sucess="Registration succesul")
+		if (response == 0):
+			return render_template("index.html", error="Registration failed")
 		return render_template("index.html", error=response)
 
 @app.route("/api/employee_register", methods=["POST"])
@@ -143,7 +148,83 @@ def register_user():
 
 		data = (name, possition, email, phone_number, username, hashed_password, is_admin)
 		response = add_employee(data)
-		return render_template("Admin.html", sucess=response)
+
+		if response == 1:
+			return render_template("Admin.html", sucess="Employoyee succesully added ")
+		return render_template("Admin.html", error="The email address is already registred")
+
+
+@app.route("/api/user_search", methods=["POST"])
+def search_user(user_keyword=None):
+
+	if request.method == "POST":
+
+		keyword = request.form["user_key"]
+
+		response = search_emplyoyee(keyword)
+
+		if (response == 0):
+
+			return "No data found"
+		else:
+
+			return response
+
+@app.route("/api/update_employee/<employee_info>", methods=["POST"])
+def update_employee(employee_info):
+
+	md5_hash = hashlib.md5()
+
+	data = request.json
+
+	name = f"{data["name"]} {data["surname"]}"
+	position = data["position"]
+	email = data["email"]
+	phone_number = data["phone"]
+	username = data["email"]
+	is_admin = data["is_admin"]
+	password = data["password"]
+
+	md5_hash.update(password.encode("utf-8"))
+	hashed_password = md5_hash.hexdigest()
+
+	user_info = (name, position, email, phone_number, username, hashed_password, is_admin, email)
+
+	response = update_employee_info(user_info) 
+
+	if (response == 1):
+
+		return render_template("Admin.html", sucess="Employoyee information updated")
+	return render_template("Admin.html", error="Could not update employee informaotion")
+
+
+
+@app.route("/api/delete_employee/<employee_id>", methods=["POST"])
+def delete_employee(employee_id):
+
+	data = request.json
+
+	email = data["employee_id"]
+
+	response = delete_employee_info(email)
+
+	if request == 1:
+		return render_template("Admin.html", sucess="Employee succesully removed")
+	return render_template("Admin.html", error="Could not delete employee")
+
+
+@app.route("/api/local_books/<key_word>", methods=["POST"])
+def get_books_transaction(key_word=None):
+
+	data = request.json
+
+	key = data["key_word"]
+
+	response = view_resource(key)
+
+	if (response == 0):
+		return "No books found"
+	return response 
 
 
 

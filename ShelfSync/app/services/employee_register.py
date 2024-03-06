@@ -37,9 +37,80 @@ def add_employee(employee_info):
 		conn.commit()
 
 		if (cursor.rowcount > 0):
-			return "Registration processed"
-		return "Registration failed"
+			return 1
+		return 0
 
 	except mysql.connector.Error as err:
 
 		return f"Error: {err}"
+
+
+
+def update_employee_info(employee_info):
+
+	"""
+	Update user information
+
+	Args:
+
+	"""
+
+	conn = get_database_connection()
+	cursor = conn.cursor()
+
+
+	query = "UPDATE employee SET `name` = %s, `position` = %s, `email` = %s, `phone` = %s, `username` = %s, `password` = %s, `is_admin` = %s WHERE `email` = %s"
+
+	try:
+
+		cursor.execute(query, employee_info)
+
+		conn.commit()
+
+		if (cursor.rowcount > 0):
+
+			return 1
+		return 0
+
+	except mysql.connector.Error as err:
+
+		return f"Error: {err}"
+
+	finally:
+
+		cursor.close()
+		conn.close()
+
+
+
+def delete_employee_info(employee_id):
+
+	"""
+	deletes user from DB
+	"""
+
+	conn = get_database_connection()
+	cursor = conn.cursor()
+
+	query = "DELETE FROM employee WHERE `email` = %s"
+
+	try:
+
+		cursor.execute(query, (employee_id,))
+
+		conn.commit()
+
+		if (cursor.rowcount > 0):
+			return 1
+		return 0
+
+	except mysql.connector.Error as err:
+
+		return f"Error: {err}"
+
+	finally:
+		cursor.close()
+		conn.close()
+
+
+
