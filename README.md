@@ -29,24 +29,18 @@ The Library Management System is designed to help librarians manage library reso
 1. Clone the repository to your local machine:
    ```bash
    git clone https://github.com/your_username/library-management-system.git
-
+   ```
    Navigate to the project directory:
+   ```bash
+      cd ShelfSync
+      Install the dependencies:  pip install -r requirements.txt
+   ```
 
-   bash
-   Copy code
-   cd ShelfSync
-   Install the dependencies:
-
-   bash
-   Copy code
-   pip install -r requirements.txt
-   Usage
-   Start the Flask server:
-
-   bash
-   Copy code
-   flask run
-Open your web browser and navigate to http://localhost:5000 to access the Library Management System.
+## Usage
+- Go to 'Tools' and run Create_database.sql file: mysql -u 'your usernme' -p < Create_database.sql
+- Go to app/config.py and insert your database credentials.
+- Start the Flask server: python3 main.py
+- Open your web browser and navigate to http://localhost:5000 to access the Library Management System.
 
 Dependencies
 Flask: Web framework for Python
@@ -55,4 +49,6 @@ Flask: Web framework for Python
 Bootstrap: Front-end framework for building responsive web designs
 jQuery: JavaScript library for simplifying HTML DOM traversal and manipulation
 Other Python libraries as listed in requirements.txt
+
+
 
