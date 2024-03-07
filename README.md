@@ -32,20 +32,20 @@ The Library Management System is designed to help librarians manage library reso
 
    Navigate to the project directory:
 
-bash
-Copy code
-cd library-management-system
-Install the dependencies:
+   bash
+   Copy code
+   cd library-management-system
+   Install the dependencies:
 
-bash
-Copy code
-pip install -r requirements.txt
-Usage
-Start the Flask server:
+   bash
+   Copy code
+   pip install -r requirements.txt
+   Usage
+   Start the Flask server:
 
-bash
-Copy code
-flask run
+   bash
+   Copy code
+   flask run
 Open your web browser and navigate to http://localhost:5000 to access the Library Management System.
 
 Dependencies
