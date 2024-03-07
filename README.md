@@ -6,10 +6,8 @@ This is a web-based library management system built using Flask, HTML, CSS, Boot
 - [Description](#description)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Dependencies](#dependencies)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Description
 The Library Management System is designed to help librarians manage library resources, including books, patrons, borrowing records, and more. It provides an intuitive interface for adding, updating, and deleting books, managing patron information, and tracking borrowing history.
@@ -20,6 +18,12 @@ The Library Management System is designed to help librarians manage library reso
 - Search for books by title, author, or ISBN
 - Track borrowing history and due dates
 - Admin dashboard for managing library resources
+
+## Dependencies
+- Flask: Web framework for Python
+- Bootstrap: Front-end framework for building responsive web designs
+- jQuery: JavaScript library for simplifying HTML DOM traversal and manipulation
+- Other Python libraries as listed in requirements.txt
 
 ## Installation
 1. Clone the repository to your local machine:
@@ -54,6 +58,7 @@ Other Python libraries as listed in requirements.txt
 
 ```
 
-- After installing MYSQL. go to 'Tools' in the root directory and run the 'Create_database.sql' file. Mysql -u [you username] -p < Create_database.sql
-- Go to app/config.py and add you database credentials.
+
+#After installing MYSQL. go to 'Tools' in the root directory and run the 'Create_database.sql' file. Mysql -u you username -p < Create_database.sql
+#Go to app/config.py and add you database credentials.
 
