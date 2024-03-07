@@ -1,4 +1,4 @@
-# Library Management System
+# ShelfSync
 
 This is a web-based library management system built using Flask, HTML, CSS, Bootstrap, jQuery, and Python.
 
@@ -7,6 +7,7 @@ This is a web-based library management system built using Flask, HTML, CSS, Boot
 - [Features](#features)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage](#Usage)
 
 
 ## Description
@@ -28,7 +29,7 @@ The Library Management System is designed to help librarians manage library reso
 ## Installation
 1. Clone the repository to your local machine:
    ```bash
-   git clone https://github.com/your_username/library-management-system.git
+   git clone https://github.com/Mafika-Mahlobo/ShelfSync-Portfolio-project.git
    ```
    Navigate to the project directory:
    ```bash
