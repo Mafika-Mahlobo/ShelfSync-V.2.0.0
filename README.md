@@ -56,9 +56,3 @@ Bootstrap: Front-end framework for building responsive web designs
 jQuery: JavaScript library for simplifying HTML DOM traversal and manipulation
 Other Python libraries as listed in requirements.txt
 
-```
-
-
-#After installing MYSQL. go to 'Tools' in the root directory and run the 'Create_database.sql' file. Mysql -u you username -p < Create_database.sql
-#Go to app/config.py and add you database credentials.
-
