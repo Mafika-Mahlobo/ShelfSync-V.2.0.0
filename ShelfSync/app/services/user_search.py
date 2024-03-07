@@ -66,4 +66,3 @@ def search_emplyoyee(keyword=None):
 		finally:
 			cursor.close()
 			conn.close()
-

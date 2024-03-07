@@ -47,22 +47,6 @@
         </form>
         <div>
             <ul class="list-group universal-menu-text">
-<<<<<<< HEAD
-                {% for row in user %}
-                <li class=" lists-items list-group-item book_list" >
-                    <div class="image-holder">
-                        <img src="{{ pic[loop.index0]['smallThumbnail'] }}">
-                    </div>
-                    <div class="content-holer">
-                        <div>
-                            <h4>{{ row }}</h4>
-                        </div>
-                        <div>
-                            <p>{{ about[loop.index0] }}</p>
-                        </div>
-                        <div class="book_metadata">
-                            <p>ISBN {{ book_id[loop.index0][0]['identifier'] }}</p>
-=======
                 {% for book in volume %}
                 <li class=" lists-items list-group-item book_list" >
                     <div class="image-holder">
@@ -77,7 +61,6 @@
                         </div>
                         <div class="book_metadata">
                           {{ book['industryIdentifiers'][0]['type'] }}: {{ book['industryIdentifiers'][0]['identifier'] }} 
->>>>>>> resourceLogic
                         </div>      
                     </div>
                 </li>

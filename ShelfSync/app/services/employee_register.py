@@ -113,4 +113,3 @@ def delete_employee_info(employee_id):
 		conn.close()
 
 
-

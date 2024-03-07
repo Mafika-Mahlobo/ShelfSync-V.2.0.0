@@ -5,11 +5,7 @@ Data model for resource search
 import json
 from ..api.external_api import search_books
 
-<<<<<<< HEAD
-def get_resource(keyword="", key="industryIdentifiers"):
-=======
 def get_resource(keyword=""):
->>>>>>> resourceLogic
 
 	"""
 	returns json file of organized data from extenal api
@@ -25,4 +21,3 @@ def get_resource(keyword=""):
 		lis.append(data[i])
 
 	return lis
-

@@ -43,15 +43,8 @@ def signin(username, password):
 			user = request.form["username"]
 			isadmin_flag = session.get("isAdmin")
 
-<<<<<<< HEAD
-			
-
-			if (isadmin_str == 1):
-				return render_template("Admin.html", username=username)
-=======
 			if (isadmin_flag == 1):
 				return render_template("Admin.html", username=username, path='../static/iframe_pages/home.html')
->>>>>>> resourceLogic
 			else:
 				return render_template("Employee.html", username=username)
 

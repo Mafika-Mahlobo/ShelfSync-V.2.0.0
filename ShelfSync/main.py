@@ -49,14 +49,6 @@ def search():
 
 	if (request.method == "POST"):
 		search_key = request.form["key_word"]
-<<<<<<< HEAD
-		title = get_resource(search_key, 'title')
-		pic = get_resource(search_key, 'imageLinks')
-		book_id = get_resource(search_key, 'industryIdentifiers')
-		description = get_resource(search_key, "description")
-		return render_template("search_results.html", user=title, pic=pic, book_id=book_id, about=description)
-
-=======
 		data = get_resource(search_key)
 
 		if "username" in session:
@@ -233,7 +225,6 @@ def get_books_transaction(key_word=None):
 	if (response == 0):
 		return "No books found"
 	return response 
->>>>>>> resourceLogic
 
 
 
