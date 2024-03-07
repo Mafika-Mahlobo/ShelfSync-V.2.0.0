@@ -93,11 +93,11 @@ CREATE TABLE transactions (
 	categories VARCHAR(50) NOT NULL,
 	language VARCHAR(10) NOT NULL,
 	url VARCHAR(100)
-);
+);*/
 
 
 
-CREATE TABLE transactions(
+/*CREATE TABLE transactions(
 	transaction_id INT(4) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
 	isbn  VARCHAR(50) NOT NULL,
 	employee_id INT NOT NULL,
@@ -109,12 +109,26 @@ CREATE TABLE transactions(
 	FOREIGN KEY (isbn) REFERENCES resources(isbn),
 	FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
 	FOREIGN key (patron_id) REFERENCES patrons(patron_id)
-);
+);*/
 
 
-ALTER TABLE patrons
+/*ALTER TABLE patrons
 ADD credit INT,
 ADD debit INT;*/
+<<<<<<< HEAD
+
+=======
+>>>>>>> resourceLogic
+
+ALTER TABLE resources
+DROP COLUMN authors,
+DROP COLUMN publisher,
+DROP COLUMN description,
+DROP COLUMN url,
+DROP published_date,
+DROP categories;
 
 
 SHOW TABLES;
+
+show columns from resources;
