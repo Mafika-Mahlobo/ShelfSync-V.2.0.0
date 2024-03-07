@@ -34,7 +34,7 @@ The Library Management System is designed to help librarians manage library reso
 
    bash
    Copy code
-   cd library-management-system
+   cd ShelfSync
    Install the dependencies:
 
    bash
