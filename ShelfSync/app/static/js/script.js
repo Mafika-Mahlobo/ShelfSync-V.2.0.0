@@ -96,6 +96,21 @@ $(document).ready(function(){
 
     }
 
+/*display book info in front-end*/
+    function select_book(book_id) {
+
+        $(".isbn-display").text(book_id);
+        /*get data from api*/
+        /*set remaining text values*/
+        $(".checkin-button").val(book_id);
+        $(".checkin-button").val(book_id);
+    }
+
+ $(".checkin-button").click(function(){
+    alert(this.value);
+ })
+
+/*get books from database based on keyword*/
     function get_books(keyword){
 
         $.ajax({
@@ -107,7 +122,7 @@ $(document).ready(function(){
                 $(".logged-list").empty();
 
                 $.each(response, function(index, row){
-                    var item = `<li class="lists-items list-group-item book_list list-item-logged" value="${row[0]}">${row[1]}</li>`;
+                    var item = `<button class="lists-items list-group-item book_list list-item-logged select-book-transaction" value="${row[0]}">${row[1]}</button>`;
 
                     $(".logged-list").append(item);
 
@@ -115,6 +130,13 @@ $(document).ready(function(){
             }
         });
     }
+
+
+    /*click event for selecting book*/
+    $(".logged-list").on("click", ".select-book-transaction", function(){
+        select_book(this.value);
+
+    });
 
 
     $("#typing-search-resource").on("input", function(){

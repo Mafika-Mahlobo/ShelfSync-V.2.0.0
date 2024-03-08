@@ -30,10 +30,10 @@
     </header>
     <div class="logged-main-container">
         <div class="search-container-logged">
-            <form class="input-group mb-3 submit-form">
+            <div class="input-group mb-3 submit-form">
                 <button class="input-group-text universal-menu-text ubmit-button btn btn-info search-button universal-menu-text "><i class="bi bi-search"></i></button>
                 <input type="text"  class="form-control focus-trigger-search universal-menu-text typing-seach input-background search-input" id="typing-search-resource" name="key_word" placeholder="Search for books here">
-            </form>
+            </div>
         </div>
         <div class="employee-container-logged">
             <div class="menu-container-logged">
@@ -52,9 +52,9 @@
                         <button class="logged-crud-buttons submit-button btn btn-info sub universal-menu-text" name="button">Add Book</button>
                     </form>
                     <button class="logged-crud-buttons submit-button btn btn-info sub universal-menu-text" name="button" id="delete_confirm">Delete Book</button>
-                    <form>
-                        <button class="logged-crud-buttons submit-button btn btn-info sub universal-menu-text" name="button" value="update">Update Info</button>
-                    </form>
+                    <div>
+                        <button class="logged-crud-buttons submit-button btn btn-info sub universal-menu-text" name="button" value="update">Update transaction</button>
+                    </div>
                 </div>
             </div>
             <div class="content-container-loggged">
@@ -66,14 +66,14 @@
                         </div>
                         <div class="logged-list-container">
                             <ul class="logged-list">
-                                
+                                <!-- List items here -->
                             </ul>
                         </div>
                     </div>
                     <div class="catalog-options">
                         <div class="book-info-logged">
                             <div class="book-details-container">
-                                <p>ISBN Number: </p>
+                                <p>ISBN Number: <span class="isbn-display"></span></p>
                                 <p>Genre: </p>
                                 <p>Avalability Status:</p>
                             </div>
@@ -85,10 +85,10 @@
                         </div>
                         <div class="buttons-main-logged">
                             <div class="bottom-transaction-buttons">
-                                <form>
-                                    <button class="transaction-bttons submit-button btn btn-info sub universal-menu-text">Check In</button>
-                                    <button class="transaction-bttons submit-button btn btn-info sub universal-menu-text">Check Out</button>
-                                </form>
+                                <div>
+                                    <button class="transaction-bttons submit-button btn btn-info sub universal-menu-text checkin-button">Check In</button>
+                                    <button class="transaction-bttons submit-button btn btn-info sub universal-menu-text checkout-button">Check Out</button>
+                                </div>
                             </div> 
                         </div>
                     </div>
