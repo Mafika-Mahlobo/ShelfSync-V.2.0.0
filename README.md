@@ -47,7 +47,7 @@ The Library Management System is designed to help librarians manage library reso
 ```
 - Go to app/config.py and insert your database credentials.
 - Start the Flask server:
-``bash
+```bash
   python3 main.py
   ```
 - Open your web browser and navigate to http://localhost:5000 to access the Library Management System.
