@@ -33,23 +33,24 @@ The Library Management System is designed to help librarians manage library reso
    ```
    Navigate to the project directory:
    ```bash
-      cd ShelfSync
-      Install the dependencies:  pip install -r requirements.txt
+   cd ShelfSync
+   ```
+   Install the dependencies:
+   ```bash
+        pip install -r requirements.txt
    ```
 
 ## Usage
-- Go to 'Tools' and run Create_database.sql file: mysql -u 'your usernme' -p < Create_database.sql
+- Go to 'Tools' and run Create_database.sql file:
+```bash
+ mysql -u {your usernme} -p < Create_database.sql
+```
 - Go to app/config.py and insert your database credentials.
-- Start the Flask server: python3 main.py
+- Start the Flask server:
+```bash
+  python3 main.py
+  ```
 - Open your web browser and navigate to http://localhost:5000 to access the Library Management System.
-
-Dependencies
-Flask: Web framework for Python
-- MySQL Connector: MySQL driver for Python, enabling connection and interaction with MySQL databases
-- MySQL Connector: MySQL driver for Python, enabling connection and interaction with MySQL databases
-Bootstrap: Front-end framework for building responsive web designs
-jQuery: JavaScript library for simplifying HTML DOM traversal and manipulation
-Other Python libraries as listed in requirements.txt
 
 
 
