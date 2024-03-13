@@ -68,6 +68,8 @@ $(document).ready(function(){
 
     });
 
+get_employee("");
+
 
     function update(value){
         var values = value.split(",");
@@ -96,19 +98,43 @@ $(document).ready(function(){
 
     }
 
+    function check_availability(book_id){
+        $.ajax({
+            url: "/api/book_status/<resource_id>",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({resource_id: book_id}),
+            success: function(response){
+                book_status = response;
+            }
+        });
+    }
+
+
+    var book_info;
+    var book_status;
+    var patreon_info;
+
 /*display book info in front-end*/
     function select_book(book_id) {
 
+        get_book_info(book_id);
+        check_availability(book_id);
+
+        var date_obj = new Date();
+        var formattedDate = date_obj.toISOString().slice(0, 19).replace('T', ' ');
+
         $(".isbn-display").text(book_id);
-        /*get data from api*/
-        /*set remaining text values*/
+        $(".trans-date").text(formattedDate);
+        $(".status").text(book_status);
         $(".checkin-button").val(book_id);
         $(".checkin-button").val(book_id);
     }
 
+
  $(".checkin-button").click(function(){
-    alert(this.value);
- })
+     
+ });
 
 /*get books from database based on keyword*/
     function get_books(keyword){
@@ -130,6 +156,54 @@ $(document).ready(function(){
             }
         });
     }
+
+
+    function patreon_list(){
+        $.ajax({
+            url: "/api/get_patreon/",
+            type: "GET",
+            success: function(response){
+
+                $.each(response, function(index, row){
+                    var item = `<option class="patreon-lis-option" value="${row}">${row[1]}</option>`;
+
+                    $(".patreon-list").append(item);
+                });
+            }
+        });
+    }
+
+
+    $(".patreon-list").click(function(){
+        patreon_list();
+    });
+
+    $(".patreon-list").on("change", function(){
+        $(".patreon-list").css("visibility", "hidden");
+        patreon_info = this.value.split(",");
+        $(".selected-patreon").text(patreon_info[1])
+        $(".new-patreon-select").css("visibility", "visible");
+    });
+
+    $(".new-patreon-select").click(function(){
+        window.location.reload();
+    });
+
+
+    function get_book_info(book_id){
+        $.ajax({
+            url: "/api/resource_transaction/<resource_id>",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({resource_id: book_id}),
+            success: function(response){
+                book_info = response;
+            }
+        });
+    }
+
+
+    get_books("a");
 
 
     /*click event for selecting book*/
@@ -173,6 +247,7 @@ $(document).ready(function(){
             }
         });
     }
+
 
     $("#view-add-employee").on("click", "#edit-button", function() {
                 update(this.value);

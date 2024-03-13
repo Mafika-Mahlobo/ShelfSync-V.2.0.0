@@ -68,13 +68,17 @@
                         <div class="book-info-logged">
                             <div class="book-details-container">
                                 <p>ISBN Number: <span class="isbn-display"></span></p>
-                                <p>Genre: </p>
-                                <p>Avalability Status:</p>
+                                <p>Date: <span class="trans-date"></span></p>
+                                <p>Avalability Status: <span class="status"></span></p>
                             </div>
                             <div class="book-details-container">
-                                <p>Leased To: </p>
-                                <p>Return Date: </p>
-                                <p>Amount: </p>
+                                    <select class="patreon-list">
+                                        <option value="None">Select patron</option>
+                                    </select>
+                                    <div class="select-patreon-div">
+                                        <span class="selected-patreon"></span><br>
+                                        <a class="new-patreon-select">Change selection <i class="bi bi-arrow-clockwise"></i></a>
+                                    </div>
                             </div>
                         </div>
                         <div class="buttons-main-logged">

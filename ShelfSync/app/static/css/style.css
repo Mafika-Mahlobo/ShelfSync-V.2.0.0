@@ -239,7 +239,6 @@ footer {
     height: auto;
     margin-top: 2%;
     margin-left: .9% !important;
-    visibility: hidden;
 }
 
 .employee-container-logged {
@@ -302,7 +301,6 @@ footer {
     height: 100%;
     display: flex;
     flex-direction: column;
-    visibility: hidden;
 }
 
 .booklist-container {
@@ -414,7 +412,6 @@ footer {
     display: flex;
     flex-direction: column;
     padding-top: 12%;
-    visibility: hidden;
 }
 
 .confirmation-box {
@@ -653,6 +650,11 @@ footer {
 
 .logged-crud-buttons {
     width: 98%;
+}
+
+
+.new-patreon-select {
+    visibility: hidden;
 }
 
 

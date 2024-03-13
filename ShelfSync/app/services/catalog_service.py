@@ -64,9 +64,9 @@ def delete_resource(isbn):
 
 		conn.commit()
 
-		if response is None:
-			return "Book deleted"
-		return "Could not delete book"
+		if cursor.rowcount > 0:
+			return 1
+		return 0
 
 	except mysql.connector.Error as err:
 
