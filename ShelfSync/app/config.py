@@ -1,6 +1,6 @@
 
 
 MYSQL_HOST = "localhost"
-MYSQL_USER = # your username
-MYSQL_PASSWORD = # your passowrd
-MYSQL_DB = #your database name
+MYSQL_USER = "Mafika"
+MYSQL_PASSWORD = "RUmah96@"
+MYSQL_DB = "ShelfSyncDB"

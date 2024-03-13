@@ -9,7 +9,9 @@ from app.services.user_service import signin
 from app.services.catalog_service import add_resource, delete_resource, view_resource
 from app.services.patron_register import register
 from app.services.employee_register import add_employee, update_employee_info, delete_employee_info
+from app.services.check_availability import book_availability
 from app.services.user_search import search_emplyoyee
+from app.services.Patrons_service import get_patreon
 from app.models.search_resource import get_resource
 import hashlib
 
@@ -84,10 +86,13 @@ def delete_book():
 	if request.method == "POST":
 		resource_id = request.form["book_id"]
 		response = delete_resource(resource_id)
-		return render_template("Admin.html", error=response)
 
-	else:
-		return render_template("Admin.html", error="error")
+		if response == 1:
+			return render_template("Admin.html", sucess="Book deleted")
+		elif response == 0:
+			return render_template("Admin.html", error="Book not found")
+		else:
+			return render_template("Admin.html", error=response)
 
 
 @app.route("/api/resources/<resource_id>}", methods=["PUT"])
@@ -224,7 +229,58 @@ def get_books_transaction(key_word=None):
 
 	if (response == 0):
 		return "No books found"
-	return response 
+	return response
+
+
+@app.route("/api/resource_transaction/<resource_id>", methods=["POST"])
+def get_book_info(resource_id):
+
+
+
+	if request.method == "POST":
+
+		data = request.json
+
+		book_id = data["resource_id"]
+
+		response = get_resource(book_id)
+
+		if len(response) > 0:
+
+			return response[0]
+
+		else:
+			return "Book not found"
+
+
+@app.route("/api/book_status/<resource_id>", methods=["POST"])
+def get_status(resource_id):
+
+	if request.method == "POST":
+
+		data = request.json
+		isbn = data["resource_id"]
+
+		response = book_availability(isbn)
+
+		if response == 1:
+			return "Available"
+		return "Not available"
+
+
+@app.route("/api/get_patreon/", methods=["GET"])
+def patreon_list():
+
+	if request.method == "GET":
+
+		response = get_patreon()
+
+		if len(response) > 0:
+
+			return response;
+
+		return "No patreon data found"
+
 
 
 
