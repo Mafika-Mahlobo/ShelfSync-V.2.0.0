@@ -10,7 +10,11 @@ def search_books(keyword):
     """
     fetches data from Google books api
 
-    ....
+    Args:
+        keyword (str): search string
+
+    Returns:
+        List: list containing book information.
     """
 
     url = f'https://www.googleapis.com/books/v1/volumes?q={keyword}&maxResults=40'

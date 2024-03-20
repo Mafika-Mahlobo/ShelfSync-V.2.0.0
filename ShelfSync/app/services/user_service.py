@@ -1,9 +1,5 @@
 """
 Module for handling user related logic
-
-
-Notes:
-	this is for employee sign-in. change name.
 """
 
 
@@ -19,7 +15,12 @@ def signin(username, password):
 	"""
 	Authenticate and open session for user
 
-	.....
+	Args:
+		username (str): username
+		password (str): password
+
+	Returns:
+		Html: Renders HTML page
 	"""
 
 	md5_hash = hashlib.md5()
@@ -39,6 +40,7 @@ def signin(username, password):
 			session["id"] = user_data[0][0]
 			session["username"] = user_data[0][5]
 			session["isAdmin"] = user_data[0][7]
+			session["email"] = user_data[0][3]
 
 			user = request.form["username"]
 			isadmin_flag = session.get("isAdmin")

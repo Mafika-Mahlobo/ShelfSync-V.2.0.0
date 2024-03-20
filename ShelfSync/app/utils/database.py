@@ -1,5 +1,5 @@
 """
-DB connection
+Esatablish DB connection
 """
 
 import mysql.connector

@@ -14,7 +14,10 @@ def register(patron_info):
 	Registers patron to database.
 
 	Args:
+		patroen information (tuple): tuple containing patreon information
 
+	Returns:
+		int/str: status code or error from DB. 1 for success, 0 for failure.
 	"""
 
 	conn = get_database_connection()
@@ -43,7 +46,7 @@ def register(patron_info):
 		return 0
 
 	except mysql.connector.Error as err:
-		return err
+		return f"Error: {err}"
 
 	finally:
 		cursor.close()

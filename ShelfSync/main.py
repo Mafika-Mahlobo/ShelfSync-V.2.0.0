@@ -1,5 +1,5 @@
 """
-Entry point to the application.
+Application entry point
 """
 
 from flask import Flask, render_template, session, request, flash, redirect, url_for
@@ -9,10 +9,11 @@ from app.services.user_service import signin
 from app.services.catalog_service import add_resource, delete_resource, view_resource
 from app.services.patron_register import register
 from app.services.employee_register import add_employee, update_employee_info, delete_employee_info
-from app.services.check_availability import book_availability
 from app.services.user_search import search_emplyoyee
+from app.services.transactions import checkout, checkin
 from app.services.Patrons_service import get_patreon
 from app.models.search_resource import get_resource
+from datetime import datetime, timedelta
 import hashlib
 
 app.config.from_pyfile("config.py")
@@ -48,7 +49,7 @@ def logout():
 #Main page book search
 @app.route("/api/search", methods=["POST"])
 def search():
-
+	# book search on main page
 	if (request.method == "POST"):
 		search_key = request.form["key_word"]
 		data = get_resource(search_key)
@@ -62,7 +63,7 @@ def search():
 #add book
 @app.route("/api/resources", methods=["POST"])
 def search_book():
-
+	# book search for adding book info
 	if request.method == "POST":
 		return render_template("Add_book.html")
 
@@ -74,8 +75,8 @@ def add_book(resource_id):
 	data = get_resource(resource_id)
 	query_status = add_resource(data)
 
-	if not query_status is None:
-		return render_template("Add_book.html", sucess=query_status)
+	if query_status == 1:
+		return render_template("Add_book.html", sucess="Book Added")
 	else:
 		return render_template("Add_book.html", error=query_status)
 
@@ -97,6 +98,7 @@ def delete_book():
 
 @app.route("/api/resources/<resource_id>}", methods=["PUT"])
 def update_book_info(resource_id):
+	#update info about booking status (price, availability etc)
 	pass
 
 
@@ -281,6 +283,40 @@ def patreon_list():
 
 		return "No patreon data found"
 
+@app.route("/api/checkout/", methods=["POST"])
+def add_transaction():
+
+	if request.method == "POST":
+
+		data = request.json
+
+		isbn = data["isbn"]
+		employee_id = session["id"]
+		patreon_id = data["patreon_id"]
+		trans_type = "out"
+		date = datetime.now().date()
+		due_date = date + timedelta(days=1)
+		fee = data["fee"]
+
+		response = checkout((isbn, employee_id, patreon_id, trans_type, date, due_date, fee))
+
+		if response == 1:
+
+			return "Success"
+		return response
+
+@app.route("/api/checkin", methods=["POST"])
+def remove_transaction():
+
+	if request.method == "POST":
+
+		data = request.json
+
+		response = checkin(data["isbn"])
+
+		if response == 1:
+			return "Success"
+		return response
 
 
 

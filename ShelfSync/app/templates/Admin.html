@@ -73,12 +73,12 @@
                     <div class="catalog-options">
                         <div class="book-info-logged">
                             <div class="book-details-container">
+                                <p><span class="title-display"></span></p>
                                 <p>ISBN Number: <span class="isbn-display"></span></p>
                                 <p>Date: <span class="trans-date"></span></p>
-                                <p>Avalability Status: <span class="status"></span></p>
                             </div>
                             <div class="book-details-container">
-                                    <select class="patreon-list">
+                                    <select class="patreon-list" disabled>
                                         <option value="None">Select patron</option>
                                     </select>
                                     <div class="select-patreon-div">
@@ -90,8 +90,8 @@
                         <div class="buttons-main-logged">
                             <div class="bottom-transaction-buttons">
                                 <div>
-                                    <button class="transaction-bttons submit-button btn btn-info sub universal-menu-text checkin-button">Check In</button>
-                                    <button class="transaction-bttons submit-button btn btn-info sub universal-menu-text checkout-button">Check Out</button>
+                                    <button class="transaction-bttons submit-button btn btn-info sub universal-menu-text checkout-button" disabled>Check Out</button>
+                                    <button class="transaction-bttons submit-button btn btn-info sub universal-menu-text checkin-button" disabled>Check In</button>
                                 </div>
                             </div> 
                         </div>
@@ -158,30 +158,11 @@
     </div>
 
     
-    
-    <!-- Footer -->
-    <footer>
+        <footer>
         
         
     </footer>
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-
-
- 
-                    
-                    
-                    
-                    
-                      
-
-                     
-
-                     <div>
-                    
-                </div>
-
-                
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>              

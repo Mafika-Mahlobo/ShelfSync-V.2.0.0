@@ -13,6 +13,10 @@ def search_emplyoyee(keyword=None):
 	Searches employees from DB
 
 	Args:
+		keyword (str): search string
+
+	Returns:
+		List: list of tuples containing employee information matching search string.
 	"""
 
 	conn = get_database_connection()

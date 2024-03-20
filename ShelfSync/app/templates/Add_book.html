@@ -31,11 +31,11 @@
             </div>
 
         </div>
+        <div class="success-msg " id="success" onclick="notifocation_close();">{{ sucess }}</div>
+        <div class="error-msg succsess-msg" id="error">{{ error }}</div>
     </header>
-    
-    <!-- iframe container -->
     <div class="frame-container container">
-        <iframe class="main-iframe" src="{{ url_for('static', filename='iframe_pages/slide.html') }}"></iframe>
+        
     </div>
 
     <div class="body_container container">
@@ -83,10 +83,6 @@
     
     <!-- Footer -->
     <footer>
-        <div class="universal-menu-text col-6">
-            <span>{{ error }}</span>
-            <span>{{ sucess }}</span>
-        </div>
     </footer>
 </body>
 </html>
