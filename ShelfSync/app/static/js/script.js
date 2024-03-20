@@ -1,10 +1,6 @@
 $(document).ready(function(){
 
 
-    /*$(".focus-trigger-login").focus(function(){
-        changeView(1);
-    });*/
-
     $(".focus-trigger-search").focus(function(){
          changeView(2);
     });
@@ -76,7 +72,6 @@ get_employee("");
         var is_admin = "";
 
         $("#update-name").val(values[1]);
-       /* $("#update-surname").val(values[1]);*/
         $("#update-email").val(values[3]);
         $("#update-phone").val(values[4]);
         $("#update-posistion").val(values[2]);
@@ -98,18 +93,6 @@ get_employee("");
 
     }
 
-    function check_availability(book_id){
-        $.ajax({
-            url: "/api/book_status/<resource_id>",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({resource_id: book_id}),
-            success: function(response){
-                book_status = response;
-            }
-        });
-    }
-
 
     var book_info;
     var book_status;
@@ -119,22 +102,52 @@ get_employee("");
     function select_book(book_id) {
 
         get_book_info(book_id);
-        check_availability(book_id);
 
         var date_obj = new Date();
-        var formattedDate = date_obj.toISOString().slice(0, 19).replace('T', ' ');
+        var date = date_obj.getFullYear() + '-' + (date_obj.getMonth() + 1) + '-' + date_obj.getDate() + ' ' + date_obj.getHours() + ':' + date_obj.getMinutes() + ':' + date_obj.getSeconds();
 
         $(".isbn-display").text(book_id);
-        $(".trans-date").text(formattedDate);
-        $(".status").text(book_status);
-        $(".checkin-button").val(book_id);
+        $(".title-display").text(book_info["title"]);
+        $(".trans-date").text(date);
+        $(".checkout-button").val(book_id);
         $(".checkin-button").val(book_id);
     }
 
 
- $(".checkin-button").click(function(){
+ $(".checkout-button").click(function(){
+
+     var isbn = this.value;
+     var patreon_id = patreon_info[0]
+     var trans_type = "out";
+     var fee = 20; //feature to set prices to be implemented
      
+     $.ajax({
+        url: "/api/checkout/",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({isbn: isbn, patreon_id: patreon_id, fee: fee }),
+        success: function(response){
+            alert(response);
+        }
+     });
+
  });
+
+ $(".checkin-button").click(function(){
+    var isbn = this.value;
+
+    $.ajax({
+        url: "/api/checkin",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({isbn: isbn}),
+        success: function(response){
+            alert(response);
+        }
+    });
+ });
+
+
 
 /*get books from database based on keyword*/
     function get_books(keyword){
@@ -185,6 +198,7 @@ get_employee("");
         $(".new-patreon-select").css("visibility", "visible");
     });
 
+
     $(".new-patreon-select").click(function(){
         window.location.reload();
     });
@@ -209,7 +223,9 @@ get_employee("");
     /*click event for selecting book*/
     $(".logged-list").on("click", ".select-book-transaction", function(){
         select_book(this.value);
-
+        $(".checkin-button").prop("disabled", false);
+        $(".checkout-button").prop("disabled", false);
+        $(".patreon-list").prop("disabled", false);
     });
 
 
@@ -295,24 +311,6 @@ get_employee("");
     });
 
 
-$.event.special.contentChanged = {
-    setup: function() {
-        var $this = $(this),
-            $origHtml = $this.html();
-
-        $this.data('origHtml', $origHtml);
-        $this.on('DOMSubtreeModified', function() {
-            if($this.data('origHtml') !== $this.html()) {
-                $this.trigger('contentChanged');
-            }
-        });
-    },
-    teardown: function() {
-        $(this).off('DOMSubtreeModified');
-    }
-};
-
-
 $(".success-msg").hover(function(){
     $("#success").delay(3000).fadeOut('slow');
 });
@@ -320,20 +318,15 @@ $(".success-msg").hover(function(){
 $('.success-msg').on('contentChanged', function() {
     if ($(this).html().trim() !== '') {
 
-        //Do
     } else {
-
         $("#success").delay(3000).fadeOut('slow');
         $("#error").delay(3000).fadeOut('slow');
     }
 });
 
 
-$(".success-msg").click(function(){
-    $('.success-msg').trigger('contentChanged');
-});
-
 $('.success-msg').trigger('contentChanged');
+$('.error').trigger('contentChanged');
 
 
 //change view of main page

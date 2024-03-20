@@ -1,10 +1,10 @@
 #create database
-CREATE DATABASE # Your database name
+CREATE DATABASE ShelfSyncDB
 
 #select database
-USE # Your database name
+USE ShelfSyncDB
 
-
+#Create tables
 CREATE TABLE employee (
 	employee_id INT AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(50) NOT NULL,

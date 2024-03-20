@@ -4,14 +4,19 @@ This is a web-based library management system built using Flask, HTML, CSS, Boot
 
 ## Table of Contents
 - [Description](#description)
+- [Introduction](#Introduction)
 - [Features](#features)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage](#Usage)
+- [Cotribution](#Contributions)
 
 
 ## Description
 The Library Management System is designed to help librarians manage library resources, including books, patrons, borrowing records, and more. It provides an intuitive interface for adding, updating, and deleting books, managing patron information, and tracking borrowing history.
+
+## Introduction
+For more information about the project, visit [ShelfSync Website](#), read the final project blog article [here](#), and connect with the author on [LinkedIn](https://www.linkedin.com/in/mafika-mahlobo-719a9a164/).
 
 ## Features
 - Add, edit, and delete books from the library inventory
@@ -52,5 +57,15 @@ The Library Management System is designed to help librarians manage library reso
   ```
 - Open your web browser and navigate to http://localhost:5000 to access the Library Management System.
 
+## Contributions
 
+- If you're interested in contributing to ShelfSync, follow these steps
 
+1. **Fork** the repository by clicking the "Fork" button on the top right corner of this page.
+2. **Clone** your forked repository to your local machine:
+   ```bash
+   git clone https://github.com/your-username/ShelfSync.git
+   ```
+3. Create a new branch
+4. Make changes, stage commits and push.
+5. Visit the original repository on GitHub and click "New pull request"

@@ -13,7 +13,10 @@ def add_employee(employee_info):
 	Adds user to the database.
 
 	Args:
+		umployee information (tuple): tuple containing employee information.
 
+	Returns:
+		int/str: status code or error from DB. 1 for success, 0 for failure
 	"""
 
 	conn = get_database_connection()
@@ -52,7 +55,10 @@ def update_employee_info(employee_info):
 	Update user information
 
 	Args:
+		umployee information (tuple): tuple containing employee information.
 
+	Returns:
+		int/str: status code or error from DB. 1 for success, 0 for failure.
 	"""
 
 	conn = get_database_connection()
@@ -87,6 +93,12 @@ def delete_employee_info(employee_id):
 
 	"""
 	deletes user from DB
+
+	Args:
+		umployee id (str): tuple containing employee information.
+
+	Returns:
+		int/str: status code or error from DB. 1 for success, 0 for failure
 	"""
 
 	conn = get_database_connection()

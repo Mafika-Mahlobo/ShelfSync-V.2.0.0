@@ -10,7 +10,11 @@ def get_resource(keyword=""):
 	"""
 	returns json file of organized data from extenal api
 
-	.....
+	Args:
+		keyword (str): search string
+
+	Returns:
+		List: list of dictionarues conatining book information.
 	"""
 
 	lis = []

@@ -1,9 +1,23 @@
+"""
+Fetches patreon information from DB.
+"""
+
 from flask import Flask, render_template, session, request
 from .. import app
 from ..utils.database import get_database_connection
 import mysql.connector
 
 def get_patreon():
+
+	"""
+	Gets patreon information from DB.
+
+	Args:
+		None
+
+	Returns:
+		List: list of tuples containing patreons inforamtion.
+	"""
 
 
 	conn = get_database_connection()

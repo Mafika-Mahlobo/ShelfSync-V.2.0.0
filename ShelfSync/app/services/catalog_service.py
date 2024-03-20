@@ -7,13 +7,18 @@ from .. import app
 from ..utils.database import get_database_connection
 import mysql.connector
 
-#Add a book to DB
+
 def add_resource(book):
 	"""
 	Adds resource to DB
+	
+	Args:
+		Book (list): a list of dictionaries with book metadata
 
-	....
+	Returns:
+		int/str: status code or error message form DB. 1 for sucess, 0 for failure
 	"""
+
 	conn = get_database_connection()
 	cursor = conn.cursor()
 	
@@ -30,12 +35,11 @@ def add_resource(book):
 		conn.commit()
 
 		if (cursor.rowcount > 0):
-			return "Book added"
-		else:
-			return "Error. Book not added"
+			return 1
+		return 0
 
 	except mysql.connector.Error as err:
-		return err
+		return f"Error: {err}"
 
 	finally:
 
@@ -44,15 +48,18 @@ def add_resource(book):
 			
 
 
-
-#Delete book from DB
 def delete_resource(isbn):
 
 	"""
 	Removes resource from DB.
 
-	...
+	Args:
+		isbn (str): unique indentifier for a book
+
+	Returns:
+		int/str: Status code or DB error. 1 for success, 0 for failure.
 	"""
+
 	conn = get_database_connection()
 	cursor = conn.cursor()
 
@@ -80,9 +87,13 @@ def delete_resource(isbn):
 def view_resource(keyword=None):
 
 	"""
-	return a books matching keyword
+	Searches internal catalog based on keyword
 
 	Args:
+		keyword (str): a search string
+
+	Returns:
+		List: List of tuple containing information from DB.
 	 """
 
 	conn = get_database_connection()
