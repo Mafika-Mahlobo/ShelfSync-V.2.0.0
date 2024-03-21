@@ -16,7 +16,7 @@ This is a web-based library management system built using Flask, HTML, CSS, Boot
 The Library Management System is designed to help librarians manage library resources, including books, patrons, borrowing records, and more. It provides an intuitive interface for adding, updating, and deleting books, managing patron information, and tracking borrowing history.
 
 ## Introduction
-For more information about the project, visit [ShelfSync Website](#), read the final project blog article [here](#), and connect with the author on [LinkedIn](https://www.linkedin.com/in/mafika-mahlobo-719a9a164/).
+For more information about the project, visit [ShelfSync Website](http://Malfika.pythonanywhere.com), read the final project blog article [here](https://www.linkedin.com/posts/mafika-mahlobo-719a9a164_activity-7176371068792619008-qNjJ?utm_source=share&utm_medium=member_desktop), and connect with the author on [LinkedIn](https://www.linkedin.com/in/mafika-mahlobo-719a9a164/).
 
 ## Features
 - Add, edit, and delete books from the library inventory
