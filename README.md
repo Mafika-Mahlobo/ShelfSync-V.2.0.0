@@ -51,9 +51,9 @@ For more information about the project, visit [ShelfSync Website](http://Malfika
  mysql -u {your usernme} -p < Create_database.sql
 ```
 - default account credentials
-- - username: admin@shelfsync.co.za
+  - username: admin@shelfsync.co.za
   - password: admin
-- Go to app/config.py and insert your database credentials.
+- Go to app/config.py and update the file with your MYSQL credentials.
 - Start the Flask server:
 ```bash
   python3 main.py
