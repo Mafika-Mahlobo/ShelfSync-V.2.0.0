@@ -42,7 +42,7 @@ For more information about the project, visit [ShelfSync Website](http://Malfika
    ```
    Install the dependencies:
    ```bash
-        pip install -r requirements.txt
+   pip install -r requirements.txt
    ```
 
 ## Usage
@@ -50,6 +50,9 @@ For more information about the project, visit [ShelfSync Website](http://Malfika
 ```bash
  mysql -u {your usernme} -p < Create_database.sql
 ```
+- default account credentials
+- - username: admin@shelfsync.co.za
+  - password: admin
 - Go to app/config.py and insert your database credentials.
 - Start the Flask server:
 ```bash
