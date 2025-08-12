@@ -1,17 +1,36 @@
-""""
-User service Test
 
-"""
-
-from app.models.user import User
-
-class Patron:
-
-    def __init__(self, name):
-        self.name = name
-
-    def create_user(self):
-        person = User(self.name)
-        return f"Hello {person.name}"
-
+class UserManager:
     
+    @staticmethod
+    def save_to_db(user):
+        if not user == ():
+            return True
+        return False
+    
+    @staticmethod
+    def get_patron(patron):
+        pass
+
+    @staticmethod
+    def get_Admin(admin):
+        pass
+
+    @staticmethod
+    def update_patron(patron):
+        pass
+
+    @staticmethod
+    def update_admin(admin):
+        pass
+
+    @staticmethod
+    def suspend_patron(patron):
+        pass
+
+    @staticmethod
+    def suspend_admin(admin):
+        pass
+
+    @staticmethod
+    def delete_user(user):
+        pass
