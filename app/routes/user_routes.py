@@ -1,13 +1,14 @@
 from flask import Blueprint
 #from flask import request, render_template, jsonify
 from app.models.user import User
+from app.extensions import Database
 
 user_routesbp = Blueprint("user", __name__, url_prefix="/user")
 
 @user_routesbp.route("/")
 def add_users():
     mock_form_data = {
-        "library_id": "test",
+        "library_id": 1,
         "name": "Mafika", ""
         "surname": "Mahlobo", 
         "email": "test@email.com", 
@@ -24,4 +25,4 @@ def add_users():
         mock_form_data["password"],
         mock_form_data["role"],
         )
-    return new_user.add()
+    return User.add(new_user)

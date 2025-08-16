@@ -16,7 +16,7 @@ class User:
         self.phone = phone
         self.password_hash = Helpers.hash_password(password)
         self.role = role
-        self.isactive = True
+        self.isactive = role
 
     def add(self):
         response = UserManager.save_to_db(( 
@@ -27,11 +27,12 @@ class User:
             self.phone, 
             self.password_hash,
             self.role,
+            self.isactive
               ))
         
-        if(response):
+        if(response == True):
             return f"{self.name} {self.surname} Has been successfully registered!"
-        return "Error"
+        return "User could not be added"
     
 class Patron(User):
     pass
