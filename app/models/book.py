@@ -13,7 +13,7 @@ class Books:
         self.available_copies = available_copies
 
     def add(self):
-        pass
+        return f"Book added. Title: {self.title}"
 
     def edit(self):
         pass

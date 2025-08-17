@@ -10,7 +10,7 @@ class Library:
         self.logo_url = logo_url
 
     def add(self):
-        pass
+        return f"Library added! {self.name} Welcome to ShelfSync."
 
     def delete(self):
         pass

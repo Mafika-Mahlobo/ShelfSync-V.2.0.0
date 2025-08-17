@@ -14,7 +14,7 @@ class Loans:
         self.status = status
 
     def check_out(self):
-        pass
+        return f"Thank for using ShelfSync. Book ID {self.book_id}, must be retuned on {self.due_date}"
 
     def check_in(self):
         pass

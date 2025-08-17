@@ -1,9 +1,7 @@
-from flask import Blueprint
-#from flask import request, render_template, jsonify
+from flask import Blueprint, request, render_template, jsonify
 from app.models.user import User
-from app.extensions import Database
 
-user_routesbp = Blueprint("user", __name__, url_prefix="/user")
+user_routesbp = Blueprint("user", __name__, url_prefix="/register-user")
 
 @user_routesbp.route("/")
 def add_users():
