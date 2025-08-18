@@ -6,7 +6,8 @@ CREATE TABLE Libraries (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    logo_url VARCHAR(500)
+    logo_url VARCHAR(500),
+    UNIQUE KEY (name, description(500))
 );
 
 CREATE TABLE Library_hours (

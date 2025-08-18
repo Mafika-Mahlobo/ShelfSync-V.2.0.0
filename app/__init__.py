@@ -1,7 +1,7 @@
 from flask import Flask
 from app.routes.user_routes import user_routesbp
 from app.routes.book_routes import booksbp, book_searchbp
-from app.routes.library_routes import librarybp
+from app.routes.library_routes import librarybp, library_deletebp
 from app.routes.transaction_routes import check_inbp, check_outbp
 
 def create_app():
@@ -13,5 +13,6 @@ def create_app():
     app.register_blueprint(librarybp)
     app.register_blueprint(check_outbp)
     app.register_blueprint(book_searchbp)
+    app.register_blueprint(library_deletebp)
     
     return app
