@@ -32,7 +32,7 @@ class User:
         
         if(response == True):
             return f"{self.name} {self.surname} Has been successfully registered!"
-        return "User could not be added"
+        return f"{response}"
     
 class Patron(User):
     pass
