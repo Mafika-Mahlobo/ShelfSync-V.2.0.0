@@ -3,7 +3,6 @@
 User model
 
 """
-from app.services.user_service import UserManager
 from app.utils.helpers import Helpers
 
 class User:
@@ -16,29 +15,4 @@ class User:
         self.phone = phone
         self.password_hash = Helpers.hash_password(password)
         self.role = role
-        self.isactive = role
-
-    def add(self):
-        response = UserManager.save_to_db(( 
-            self.library_id,
-            self.name, 
-            self.surname, 
-            self.email, 
-            self.phone, 
-            self.password_hash,
-            self.role,
-            self.isactive
-              ))
-        
-        if(response == True):
-            return f"{self.name} {self.surname} Has been successfully registered!"
-        return f"{response}"
-    
-class Patron(User):
-    pass
-
-class Admin(User):
-    pass
-
-class GlobalAdmin(User):
-    pass
+        self.isactive = 1
