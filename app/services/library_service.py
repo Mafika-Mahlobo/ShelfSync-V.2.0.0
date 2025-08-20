@@ -95,7 +95,7 @@ class LibraryManager:
         else:
             if cursor.rowcount > 0:
                 return {"success": True, "message": "Operation successful", "data": results}
-            return {"success": True, "message": "No Match. Check the library name and try again."}
+            return {"success": True, "message": "No Match. Check the library name and try again.", "data": []}
         
         finally:
             Database.db_clean_up(conn, cursor)

@@ -1,7 +1,6 @@
 from app.extensions import Database
 import mysql.connector
 from mysql.connector import errorcode
-from app.config import User_role
 
 class UserManager:
 
@@ -66,25 +65,63 @@ class UserManager:
             Database.db_clean_up(conn, cursor)
 
     @staticmethod
-    def get_patron():
+    def get_users(user_type, library_id):
+        conn = Database.db_connection()
+        cursor = conn.cursor()
+        query = "SELECT * FROM Users WHERE role = %s AND library_id = %s"
+
+        try:
+            cursor.execute(query, (user_type, library_id))
+            results = cursor.fetchall()
+
+        except mysql.connector.Error as err:
+            return {"success": False, "message": "Oops! We ran into a problem. Try again later."}
+        
+        else:
+            if cursor.rowcount > 0:
+                return {"success": True, "message": "Operation successful", "data": results}
+            return {"success": True, "message": "No users", "data": []}
+
+        finally:
+            Database.db_clean_up(conn, cursor)        
+
+
+    @staticmethod
+    def update_user_info(new_user_info, user_id, library_id):
+        conn = Database.db_connection()
+        cursor = conn.cursor()
+        query = "UPDATE Users SET name = %s, surname = %s, email = %s, phone = %s,  password_hash = %s WHERE" \
+        " id = %s AND library_id = %s"
+
+        try:
+            cursor.execute(query, (new_user_info.name,
+                                   new_user_info.surname,
+                                   new_user_info.email,
+                                   new_user_info.phone,
+                                   new_user_info.password_hash,
+                                   user_id,
+                                   library_id))
+
+        except mysql.connector.Error as err:
+            return {"success": False, "message": "Oops! We ran into a problem. Try again later."}
+        
+        else:
+            conn.commit()
+            if cursor.rowcount > 0:
+                return {"seccess": True, "message": "personal details succesfully updated"}
+            return {"success": False, "message": "Could not update personal information. Try again."}
+        
+        finally:
+            Database.db_clean_up(conn, cursor)
+
+    @staticmethod
+    def change_user_role():
         pass
 
     @staticmethod
-    def get_Admin():
+    def sign_in():
         pass
 
     @staticmethod
-    def update_patron():
-        pass
-
-    @staticmethod
-    def update_admin():
-        pass
-
-    @staticmethod
-    def suspend_patron():
-        pass
-
-    @staticmethod
-    def suspend_admin():
+    def sign_out():
         pass
