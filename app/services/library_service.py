@@ -12,10 +12,10 @@ class LibraryManager:
         conn = Database.db_connection()
 
         cursor = conn.cursor()
-        query = "INSERT INTO Libraries (name, description, logo_url) VALUES (%s, %s, %s)"
+        query = "INSERT INTO Libraries (name, description, logo_url, coordinates) VALUES (%s, %s, %s, %s)"
 
         try:
-            cursor.execute(query, (library.name, library.description, library.logo_url))
+            cursor.execute(query, (library.name, library.description, library.logo_url, library.coordinates))
 
         except mysql.connector.Error as err:
             if err.errno == errorcode.ER_DUP_ENTRY:
@@ -74,7 +74,7 @@ class LibraryManager:
         else:
             if cursor.rowcount > 0:
                 return {"success": True, "message": "Operation successful", "data": results}
-            return {"success": False, "message": "No libraries."}
+            return {"success": False, "message": "No libraries.", "data": []}
         
         finally:
             Database.db_clean_up(conn, cursor)
@@ -105,12 +105,13 @@ class LibraryManager:
     def edit_library(new_library_info, library_id):
         conn = Database.db_connection()
         cursor = conn.cursor()
-        query = "UPDATE Libraries SET name = %s, description = %s, logo_url = %s WHERE id = %s"
+        query = "UPDATE Libraries SET name = %s, description = %s, logo_url = %s, coordinates = %s WHERE id = %s"
 
         try:
             cursor.execute(query, (new_library_info.name, 
                                    new_library_info.description, 
-                                   new_library_info.logo_url, 
+                                   new_library_info.logo_url,
+                                   new_library_info.coordinates, 
                                    library_id))
             
         except mysql.connector.Error as err:
@@ -120,7 +121,7 @@ class LibraryManager:
             conn.commit()
             if cursor.rowcount > 0:
                 return {"success": True, "message": "Library updated successfully"}
-            return {"success": False, "message": "Oops! We ran into a problem. Try again later."}
+            return {"success": False, "message": "Nothing has been updated. Enter your changes and save."}
         
         finally:
             Database.db_clean_up(conn, cursor)

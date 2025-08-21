@@ -7,8 +7,10 @@ CREATE TABLE Libraries (
     name VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     logo_url VARCHAR(500),
+    coordinates VARCHAR(500),
     UNIQUE KEY (name, description(500))
 );
+
 
 CREATE TABLE Library_hours (
     library_id INT NOT NULL,
@@ -24,12 +26,13 @@ CREATE TABLE Users (
     library_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
     surname VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL,
     phone VARCHAR(20) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     role INT NOT NULL,
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
-    FOREIGN KEY (library_id) REFERENCES Libraries(id)
+    FOREIGN KEY (library_id) REFERENCES Libraries(id),
+    UNIQUE KEY (library_id, email)
 );
 
 CREATE TABLE Books (

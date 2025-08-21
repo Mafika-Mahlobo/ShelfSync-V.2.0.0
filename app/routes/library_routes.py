@@ -1,6 +1,7 @@
 from flask import Blueprint, request, render_template, jsonify
 from app.models.library import Library
 from app.services.library_service import LibraryManager
+import json
 
 librarybp = Blueprint("library", __name__, url_prefix="/register-library")
 library_deletebp = Blueprint("library_delete", __name__, url_prefix="/delete-library")
@@ -10,13 +11,23 @@ library_editbp = Blueprint("edit_library", __name__, url_prefix="/edit_library")
 
 @librarybp.route("/")
 def add_library():
-    new_library = Library("ALX library", "Our new test library", "https://mynewlib.com")
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form.to_dict()
+
+    new_library = Library(**data)
     response = LibraryManager.add_library(new_library)
     return response["message"]
 
 @library_deletebp.route("/")
-def delete_book():
-    library = Library("Mafika's Library", "Another test library for update", "https://test.com")
+def delete_library():
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form.to_dict()
+
+    library = Library(**data)
     response = LibraryManager.delete_library(library)
     return response["message"]
 
@@ -27,18 +38,19 @@ def get_library():
 
 @library_searchbp.route("/")
 def search_library():
-    response = LibraryManager.search_by_name("AL")
+    query = request.get_json()
+    response = LibraryManager.search_by_name(query)
     return response["data"]
 
 @library_editbp.route("/")
 def update_library():
-    libraries = LibraryManager.get_libraries()
-    library_id = libraries["data"][0][0]
+    
+    if request.is_json:
+        new_values = request.get_json()
+    else:
+        new_values = request.form.to_dict()
 
-    new_values = {"name": "Mafika's Library", 
-                  "description": "Another test library for update", 
-                  "logo_url": "https://test.com"}
-
+    library_id = new_values["id"]
     my_library = Library(**new_values)
     response = LibraryManager.edit_library(my_library, library_id)
 
