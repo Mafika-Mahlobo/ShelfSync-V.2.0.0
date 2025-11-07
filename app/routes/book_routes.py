@@ -1,16 +1,25 @@
 from flask import Blueprint, request, render_template, jsonify
 from app.models.book import Books
 from app.services.book_service import BookManager
+from app.utils.helpers import Helpers
 
-booksbp = Blueprint("book", __name__, url_prefix="/add_book")
-book_searchbp = Blueprint("search", __name__, url_prefix="/search_book")
+
+book_searchbp = Blueprint("search", __name__, url_prefix="/books")
+booksbp = Blueprint("book", __name__, url_prefix="/book_add")
 
 @booksbp.route("/")
 def add_book():
-    new_book = Books(1, "New", "52773637", "fantasy", 20, 15)
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form.to_dict()
 
-    return new_book.add()
+    new_book = Books(**data)
+    response = BookManager.add_book(new_book)
+    return response["message"]
 
-@book_searchbp.route("/")
-def search():
-    return BookManager.book_search("Python")
+@book_searchbp.route("/<query>", methods=["GET"])
+def book_search(query):
+    return BookManager.get_books_info(query)
+    
+

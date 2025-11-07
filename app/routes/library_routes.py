@@ -1,15 +1,10 @@
 from flask import Blueprint, request, render_template, jsonify
-from app.models.library import Library
+from app.models.library import Library, LibraryHours
 from app.services.library_service import LibraryManager
-import json
 
-librarybp = Blueprint("library", __name__, url_prefix="/register-library")
-library_deletebp = Blueprint("library_delete", __name__, url_prefix="/delete-library")
-library_getbp = Blueprint("library_get", __name__, url_prefix="/get_libraries")
-library_searchbp = Blueprint("search_library", __name__, url_prefix="/library_search")
-library_editbp = Blueprint("edit_library", __name__, url_prefix="/edit_library")
+librarybp = Blueprint("library", __name__, url_prefix="/library") 
 
-@librarybp.route("/")
+@librarybp.route("/add", methods=["POST"])
 def add_library():
     if request.is_json:
         data = request.get_json()
@@ -20,38 +15,65 @@ def add_library():
     response = LibraryManager.add_library(new_library)
     return response["message"]
 
-@library_deletebp.route("/")
-def delete_library():
-    if request.is_json:
-        data = request.get_json()
-    else:
-        data = request.form.to_dict()
 
-    library = Library(**data)
-    response = LibraryManager.delete_library(library)
+@librarybp.route("/delete/<id>", methods=["DELETE"])
+def delete_library(id):
+
+    response = LibraryManager.delete_library(int(id))
     return response["message"]
 
-@library_getbp.route("/")
-def get_library():
+@librarybp.route("/<id>", methods=["GET"])
+def get_library(id):
+    response = LibraryManager.get_library(id)
+    return response["data"]
+
+@librarybp.route("/list", methods=["GET"])
+def get_libraries():
     response = LibraryManager.get_libraries()
     return response["data"]
 
-@library_searchbp.route("/")
-def search_library():
-    query = request.get_json()
-    response = LibraryManager.search_by_name(query)
+@librarybp.route("/search/<keyword>", methods=["GET"])
+def search_library(keyword):
+    response = LibraryManager.search_by_name(keyword)
     return response["data"]
 
-@library_editbp.route("/")
-def update_library():
+@librarybp.route("/edit/<id>", methods=["PUT"])
+def update_library(id):
     
     if request.is_json:
         new_values = request.get_json()
     else:
         new_values = request.form.to_dict()
 
-    library_id = new_values["id"]
     my_library = Library(**new_values)
-    response = LibraryManager.edit_library(my_library, library_id)
+    response = LibraryManager.edit_library(my_library, id)
 
+    return response["message"]
+
+@librarybp.route("/hours/add", methods=["POST"])
+def library_hours():
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form.to_dict()
+
+    library = LibraryHours(**data)
+    result = LibraryManager.set_library_hours(library)
+    return result["message"]
+
+@librarybp.route("/hours/edit/<library_id>", methods=["PUT"])
+def library_hours_edit(library_id):
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form.to_dict()
+
+    new_hours = LibraryHours(**data)
+
+    response = LibraryManager.edit_library_hours(library_id, new_hours)
+    return response["message"]
+
+@librarybp.route("/hours/delete/<library_id>/<day_of_week>", methods=["DELETE"])
+def library_hours_delete(library_id, day_of_week):
+    response = LibraryManager.delete_hours(library_id, day_of_week)
     return response["message"]

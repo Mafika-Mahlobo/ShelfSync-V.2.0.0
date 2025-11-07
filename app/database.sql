@@ -14,7 +14,7 @@ CREATE TABLE Libraries (
 
 CREATE TABLE Library_hours (
     library_id INT NOT NULL,
-    days_of_week VARCHAR(100),
+    day_of_week TINYINT CHECK (day_of_week BETWEEN 1 AND 7),
     open_time TIME,
     close_time TIME,
     PRIMARY KEY (library_id, days_of_week),
@@ -36,20 +36,23 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Books (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id VARCHAR(20) PRIMARY KEY,
     library_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
-    isbn VARCHAR(20) NOT NULL UNIQUE,
+    description VARCHAR(500) NOT NULL,
+    image_link VARCHAR(100) NOT NULL,
+    isbn VARCHAR(20) NOT NULL,
+    authors JSON NOT NULL,
     category VARCHAR(100) NOT NULL,
     total_copies INT NOT NULL,
-    available_copies INT NOT NULL
+    available_copies INT NOT NULL,
+    PRIMARY KEY (id, library_id)
 );
 
 CREATE TABLE Book_authors (
-    book_id INT NOT NULL,
+    isbn VARCHAR(20) NOT NULL,
     author VARCHAR(255) NOT NULL,
-    PRIMARY KEY (book_id, author),
-    FOREIGN KEY (book_id) REFERENCES Books(id)
+    PRIMARY KEY (isbn, author)
 );
 
 CREATE TABLE Loans (
