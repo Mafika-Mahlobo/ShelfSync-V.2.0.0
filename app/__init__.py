@@ -1,6 +1,6 @@
 from flask import Flask
-from app.routes.user_routes import user_routesbp, user_deletebp, user_getbp, user_editbp, user_edit_profilebp, user_searchbp
-from app.routes.book_routes import booksbp, book_searchbp
+from app.routes.user_routes import user_routesbp
+from app.routes.book_routes import booksbp
 from app.routes.library_routes import librarybp
 from app.routes.transaction_routes import check_inbp, check_outbp
 
@@ -12,11 +12,5 @@ def create_app():
     app.register_blueprint(booksbp)
     app.register_blueprint(librarybp)
     app.register_blueprint(check_outbp)
-    app.register_blueprint(book_searchbp)
-    app.register_blueprint(user_deletebp)
-    app.register_blueprint(user_getbp)
-    app.register_blueprint(user_editbp)
-    app.register_blueprint(user_edit_profilebp)
-    app.register_blueprint(user_searchbp)
     
     return app

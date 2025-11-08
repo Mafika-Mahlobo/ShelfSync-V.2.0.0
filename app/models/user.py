@@ -7,7 +7,8 @@ from app.utils.helpers import Helpers
 
 class User:
     
-    def __init__(self, user_id, library_id, name, surname, email, phone, password, role, isactive):
+    def __init__(self, user_id=None, library_id=None, name=None, surname=None, 
+                 email=None, phone=None, password=None, role=None, isactive=None):
         self.user_id = user_id
         self.library_id = library_id
         self.name = name

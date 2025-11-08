@@ -42,13 +42,13 @@ class UserManager:
 
 
     @staticmethod
-    def delete_user(user):
+    def delete_user(id):
         conn = Database.db_connection()
         cursor = conn.cursor()
-        query = "DELETE FROM Users WHERE library_id = %s AND email = %s"
+        query = "DELETE FROM Users WHERE id = %s"
 
         try:
-            cursor.execute(query, (user.library_id, user.email))
+            cursor.execute(query, (id,))
 
         except mysql.connector.Error as err:
             if err.errno == errorcode.ER_ROW_IS_REFERENCED_2:
@@ -80,7 +80,28 @@ class UserManager:
         else:
             if cursor.rowcount > 0:
                 return {"success": True, "message": "Operation successful", "data": results}
-            return {"success": True, "message": "No users", "data": []}
+            return {"success": True, "message": "No users match your selection.", "data": []}
+
+        finally:
+            Database.db_clean_up(conn, cursor)
+
+    @staticmethod
+    def get_user(id):
+        conn = Database.db_connection()
+        cursor = conn.cursor()
+        query = "SELECT * FROM Users WHERE id = %s"
+
+        try:
+            cursor.execute(query, (id,))
+            results = cursor.fetchall()
+
+        except mysql.connector.Error as err:
+            return {"success": False, "message": f"{err}"}
+        
+        else:
+            if cursor.rowcount > 0:
+                return {"success": True, "message": "Operation successful", "data": results}
+            return {"success": True, "message": "No users match your selection.", "data": []}
 
         finally:
             Database.db_clean_up(conn, cursor)        
@@ -90,7 +111,7 @@ class UserManager:
     def update_user_info(new_user_info, user_id, library_id):
         conn = Database.db_connection()
         cursor = conn.cursor()
-        query = "UPDATE Users SET name = %s, surname = %s, email = %s, phone = %s,  password_hash = %s WHERE" \
+        query = "UPDATE Users SET name = %s, surname = %s, email = %s, phone = %s,  password_hash = %s, role = %s, is_active = %s WHERE" \
         " id = %s AND library_id = %s"
 
         try:
@@ -99,6 +120,8 @@ class UserManager:
                                    new_user_info.email,
                                    new_user_info.phone,
                                    new_user_info.password_hash,
+                                   new_user_info.role,
+                                   new_user_info.isactive,
                                    user_id,
                                    library_id))
 
@@ -113,36 +136,16 @@ class UserManager:
         
         finally:
             Database.db_clean_up(conn, cursor)
+            
 
     @staticmethod
-    def edit_user_profile(user):
+    def user_search(query_string):
         conn = Database.db_connection()
         cursor = conn.cursor()
-        query = "UPDATE Users SET role = %s, is_active = %s WHERE id = %s AND email = %s"
+        query = "SELECT * FROM Users WHERE name LIKE %s OR surname LIKE %s"
 
         try:
-            cursor.execute(query, (user.role, user.isactive, user.user_id, user.email))
-
-        except mysql.connector.Error as err:
-            return {"success": False, "message": f"Oops! We ran into a problem. Try again later."}
-        
-        else:
-            conn.commit()
-            if cursor.rowcount > 0:
-                return {"success": True, "message": "Success!"}
-            return {"success": True, "message": "Nothing to upate."}
-        
-        finally:
-            Database.db_clean_up(conn, cursor)
-
-    @staticmethod
-    def user_search(query_string, is_admin):
-        conn = Database.db_connection()
-        cursor = conn.cursor()
-        query = "SELECT * FROM Users WHERE (name LIKE %s OR surname LIKE %s) AND role = %s"
-
-        try:
-            cursor.execute(query, (f"%{query_string}%", f"%{query_string}%", is_admin))
+            cursor.execute(query, (f"%{query_string}%", f"%{query_string}%"))
             results = cursor.fetchall()
 
         except mysql.connector.Error as err:
