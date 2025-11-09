@@ -4,20 +4,15 @@ Library Transactions
 
 class Loans:
 
-    def __init__(self, user_id, book_id, library_id, borrowed_at, due_date, returned_at, status):
+    def __init__(self, user_id=None, book_id=None, library_id=None, borrowed_at=None, due_date=None,
+                  returned_at=None, status=None):
         self.user_id = user_id
         self.book_id = book_id
         self.library_id = library_id
         self.borrowed_at = borrowed_at
         self.due_date = due_date
         self.returned_at = returned_at
-        self.status = status
-
-    def check_out(self):
-        return f"Thank for using ShelfSync. Book ID {self.book_id}, must be retuned on {self.due_date}"
-
-    def check_in(self):
-        pass
+        self.status = status #borrowed, returned, overdue, cancelled
 
 
 class Fines(Loans):
@@ -28,12 +23,5 @@ class Fines(Loans):
         self.paid = paid
         self.issued_at = issued_at
         self.paid = paid_at
-
-    def issue_fine(self):
-        pass
-
-
-    def pay(self):
-        pass
 
     

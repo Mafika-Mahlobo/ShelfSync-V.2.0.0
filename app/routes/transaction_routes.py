@@ -1,10 +1,17 @@
 from flask import Blueprint, request, render_template, jsonify
 from app.models.transaction import Loans, Fines
+from app.services.transaction_service import TransactionManager
 
-check_outbp = Blueprint("loans_out", __name__, url_prefix="/check_out")
-check_inbp = Blueprint("loan_in", __name__, url_prefix="check_in")
+transactionsbp = Blueprint("transactions", __name__, url_prefix="/transactions")
 
-@check_outbp.route("/")
-def check_out():
-    transation = Loans(17, 5, 6, "08-17-2025 14:33:00", "08-25-2025 11:30:00", "08-22-2025 11:30:00", "Borrowed")
-    return transation.check_out()
+
+@transactionsbp.route("/checkout/<resource_id>", methods=["POST"])
+def check_out(resource_id):
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form.to_dict()
+
+    loan_information = Loans(**data)
+    response = TransactionManager.check_out(resource_id, loan_information)
+    return response["message"]

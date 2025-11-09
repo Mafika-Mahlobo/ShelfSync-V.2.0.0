@@ -16,5 +16,5 @@ class User:
         self.email = email
         self.phone = phone
         self.password_hash = Helpers.hash_password(password)
-        self.role = role
+        self.role = role #User_role - atron: 0, Admin: 1, Global_Admin: 2
         self.isactive = isactive
