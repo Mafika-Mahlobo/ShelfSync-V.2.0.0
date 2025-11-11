@@ -65,7 +65,28 @@ class UserManager:
             Database.db_clean_up(conn, cursor)
 
     @staticmethod
-    def get_users(user_type, library_id):
+    def list_users():
+        conn = Database.db_connection()
+        cursor = conn.cursor()
+        query = "SELECT * FROM Users"
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+
+        except mysql.connector.Error as err:
+            return {"success": False, "message": "Oops! We ran into a problem. Try again later."}
+        
+        else:
+            if cursor.rowcount > 0:
+                return {"success": True, "message": "Operation successful", "data": results}
+            return {"success": True, "message": "No users match your selection.", "data": []}
+
+        finally:
+            Database.db_clean_up(conn, cursor)
+
+    @staticmethod
+    def filter_users(user_type, library_id):
         conn = Database.db_connection()
         cursor = conn.cursor()
         query = "SELECT * FROM Users WHERE role = %s AND library_id = %s"

@@ -21,9 +21,16 @@ def delete_user(id):
      response = UserManager.delete_user(id)
      return response["message"]
 
+@user_routesbp.route("/list", methods=["GET"])
+def list_users():
+     response = UserManager.list_users()
+     if response["success"]:
+          return response["data"]
+     return response["message"]       
+
 @user_routesbp.route("/get-users/<role>/<library_id>", methods=["GET"])
 def get_users(role, library_id):
-     response = UserManager.get_users(role, library_id)
+     response = UserManager.filter_users(role, library_id)
      if response["data"] == []:
           return response["message"]
      return response["data"]

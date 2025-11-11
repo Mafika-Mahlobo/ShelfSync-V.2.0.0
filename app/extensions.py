@@ -19,7 +19,7 @@ class Database:
         )
 
         if conn:
-            print("Connected to Database!")
+            # print("Connected to Database!")
             return conn
         else:
             print("Could not connect to the Database.")
