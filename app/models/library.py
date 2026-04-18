@@ -44,7 +44,6 @@ class LibraryHours(db.Model):
         name='day_of_week_enum', native_enum=False
     ), nullable=False)
 
-    # To-Do: Validate if open_time is not greater than close_time and handle incorrect inputs
     open_time = db.Column(db.Time, nullable=False)
     close_time = db.Column(db.Time, nullable=False)
 
