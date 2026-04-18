@@ -1,16 +1,20 @@
+import os
 from flask import Flask
-from app.routes.user_routes import user_routesbp
-from app.routes.book_routes import booksbp
-from app.routes.library_routes import librarybp
-from app.routes.transaction_routes import check_inbp, check_outbp
+from dotenv import load_dotenv
+from flask_sqlalchemy import SQLAlchemy
+
+load_dotenv()
+
+db = SQLAlchemy()
 
 def create_app():
-
     app = Flask(__name__)
 
-    app.register_blueprint(user_routesbp)
-    app.register_blueprint(booksbp)
-    app.register_blueprint(librarybp)
-    app.register_blueprint(check_outbp)
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DB_URI')
+    app.config['SQLALCHEMy_TRACK_MODIFICATIONS'] = False
+
+    db.init_app(app)
+
+    #app.register_blueprint()
     
     return app
