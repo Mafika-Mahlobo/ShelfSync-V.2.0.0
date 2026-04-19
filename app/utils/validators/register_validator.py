@@ -6,7 +6,7 @@ class UserSchema(BaseModel):
     email: EmailStr
     password: str
 
-    @field_validator
+    @field_validator('password')
     @classmethod
     def validate_password(cls, v):
 
@@ -19,7 +19,7 @@ class UserSchema(BaseModel):
         if not re.search(r'[0-9]', v):
             raise ValueError('Password must contain at least number')
         
-        if not re.search(r'[!@#$%^&*]'):
+        if not re.search(r'[!@#$%^&*]', v):
             raise ValueError('Password must contain at least one special character.')
         
         return v

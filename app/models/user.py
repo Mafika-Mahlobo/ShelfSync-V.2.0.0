@@ -30,6 +30,14 @@ class Users(db.Model):
     def check_password(self, attempted_password):
         return check_password_hash(self.password_hash, attempted_password)
     
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name':  self.name,
+            'email': self.email
+        }
+    
+    
     def __repr__(self):
         return f'<User {self.id} - {self.name}>'
     

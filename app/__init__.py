@@ -1,20 +1,25 @@
-import os
 from flask import Flask
-from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
-
-load_dotenv()
+from app.config import DevelopmentConfig, ProductionConfig, TestingConfig
 
 db = SQLAlchemy()
 
-def create_app():
+config_map = {
+    'development': DevelopmentConfig,
+    'production': ProductionConfig,
+    'testing': TestingConfig
+}
+
+def create_app(config_name='development'):
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DB_URI')
-    app.config['SQLALCHEMy_TRACK_MODIFICATIONS'] = False
+    config_class = config_map.get(config_name, DevelopmentConfig)
+    app.config.from_object(config_class)
 
     db.init_app(app)
 
-    #app.register_blueprint()
+    from app.routes.user.auth.register import users
+
+    app.register_blueprint(users)
     
     return app
