@@ -6,13 +6,13 @@ class BaseTest(unittest.TestCase):
 
     def setUp(self):
         self.app = create_app('testing')
+        self.context = self.app.app_context()
         self.client = self.app.test_client()
+        self.context.push()
 
-        with self.app.app_context():
-            db.create_all()
+        db.create_all()
     
 
     def tearDown(self):
-        with self.app.app_context():
-            db.session.remove()
-            db.drop_all()
+        db.session.remove()
+        db.drop_all()
