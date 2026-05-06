@@ -14,9 +14,9 @@ class UserLibrary(db.Model):
 
 class Libraries(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(length=120), nullable=False)
+    name = db.Column(db.String(length=120), nullable=False, unique=True)
     description = db.Column(db.Text)
-    location_address = db.Column(db.String(50), default='No address', nullable=False)
+    location_address = db.Column(db.String(50), default='No address', nullable=False, unique=True)
 
     latitude = db.Column(db.Numeric(9, 6), nullable=False)
     longitude = db.Column(db.Numeric(9, 6), nullable=False)
