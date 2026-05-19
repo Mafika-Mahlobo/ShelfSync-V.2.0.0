@@ -16,10 +16,32 @@ DEFAULT_USER_DATA = {
 }
 
 DEFAULT_BOOK_DATA = {
-    'title': 'New Book',
-    'description': 'ihfiehgoehf\n srjifseigho sgjiegh jighsoghei\n jsehfo girgjse jisohgise jijg\n sjgirjgsp shgioeh jijsg/. srjgiprjs',
-    'isbn': '74758477384743',
-    'publisher': 'Author, Book sejesgieog'
+        "title": "A Game of Thrones (A Song of Ice and Fire)",
+        "authors": [
+            "George R.R. Martin"
+        ],
+        "publisher": "HarperCollins UK",
+        "publishedDate": "2017-09-21",
+        "description": "Published in celebration of the twentieth anniversary of George R. R. Martin’s landmark series, this lavishly illustrated special edition of A Game of Thrones—with gorgeous full-page illustrations in every chapter— is now fully optimised for ebook readers.",
+        "industryIdentifiers": [
+            {
+                "type": "ISBN_13",
+                "identifier": "9780008249618"
+            },
+            {
+                "type": "ISBN_10",
+                "identifier": "000824961X"
+            }
+        ],
+        "pageCount": 803,
+        "printType": "BOOK",
+        "categories": [
+            "Fiction"
+        ],
+        "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=sTA2DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=sTA2DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        }
 }
 
 DEFAULT_LIBRARY_DATA = {
@@ -28,7 +50,8 @@ DEFAULT_LIBRARY_DATA = {
     'location_address': '1562 Springbok street, Johannesburg, South Africa',
     'latitude': -26.10542859042405,
     'longitude': 28.109219037961633
-}
+} 
+
 
 # User factory methods
 def create_user(name=None, email=None, password=None, is_active=True):
@@ -85,14 +108,14 @@ def create_book(title=None, description=None, isbn=None, publisher=None):
     if description:
         book_data['description'] = description
     if isbn:
-        book_data['isbn'] = isbn
+        book_data['industryIdentifiers'][0]['identifier'] = isbn
     if publisher:
         book_data['publisher'] = publisher
     
     return Books(
         title=book_data['title'],
         description=book_data['description'],
-        isbn=book_data['isbn'],
+        isbn=book_data['industryIdentifiers'][0]['identifier'],
         publisher=book_data['publisher']
     )
 

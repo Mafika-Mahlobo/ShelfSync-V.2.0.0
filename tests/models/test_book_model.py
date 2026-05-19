@@ -19,13 +19,13 @@ class TestBookModel(BaseTest):
         db.session.add(book_object)
         db.session.commit()
 
-        db_book = Books.query.filter_by(isbn=book_data['isbn']).first()
+        db_book = Books.query.filter_by(isbn=book_data['industryIdentifiers'][0]['identifier']).first()
 
         # can add book to db
         self.assertIsNotNone(db_book)
         self.assertEqual(db_book.title, book_data['title'])
         self.assertEqual(db_book.description, book_data['description'])
-        self.assertEqual(db_book.isbn, book_data['isbn'])
+        self.assertEqual(db_book.isbn, book_data['industryIdentifiers'][0]['identifier'])
         self.assertEqual(db_book.publisher, book_data['publisher'])
 
         # Derived values
@@ -39,7 +39,7 @@ class TestBookModel(BaseTest):
         db.session.add(
             Books(
             description=book_data['description'],
-            isbn=book_data['isbn'],
+            isbn=book_data['industryIdentifiers'][0]['identifier'],
             publisher=book_data['publisher']
             )
         )
@@ -72,7 +72,7 @@ class TestBookModel(BaseTest):
             Books(
                 title=book_data['title'],
                 description=book_data['description'],
-                isbn=book_data['isbn'],
+                isbn=book_data['industryIdentifiers'][0]['identifier'],
                 publisher=book_data['publisher']
             )
         )
