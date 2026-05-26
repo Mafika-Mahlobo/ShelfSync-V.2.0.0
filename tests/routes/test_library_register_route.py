@@ -1,16 +1,17 @@
 import unittest
 from tests.base import BaseTest
-from tests.helpers import DEFAULT_USER_DATA
+from tests.helpers import DEFAULT_LIBRARY_DATA
+from app.utils.response import Response
 
-class TestUserRegister(BaseTest):
+class TestLibraryRegister(BaseTest):
 
-    def test_register_route_status_201(self):
-
-        response = self.client.post('/api/users/', json=DEFAULT_USER_DATA)
+    def test_library_register_success(self):
         
+        response = self.client.post('/api/library/', json=DEFAULT_LIBRARY_DATA)
+
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.content_type, 'application/json')
-        
+
         data = response.get_json()
         self.assertEqual(data['success'], True)
 

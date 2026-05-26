@@ -16,7 +16,7 @@ def register_user():
         raise ValueError(Response.fail(e.errors(), 400))
 
     if validated:
-        result = add(validated.model_dump())
-        return result.to_http()
+        response = add(validated.model_dump())
+        return response.to_http()
     
     return Response.fail('The was an issue processing you request.')

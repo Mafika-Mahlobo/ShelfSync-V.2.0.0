@@ -12,7 +12,8 @@ from datetime import datetime
 DEFAULT_USER_DATA = {
     'name': 'John Doe',
     'email': 'john@email.com',
-    'password': 'fwifiwfhi@3jsfjoSD'
+    'password': 'fwifiwfhi@3jsfjoSD',
+    'confirm_password': 'fwifiwfhi@3jsfjoSD'
 }
 
 DEFAULT_BOOK_DATA = {

@@ -19,7 +19,9 @@ def create_app(config_name='development'):
     db.init_app(app)
 
     from app.routes.user.auth.register import users
+    from app.routes.library.register import libraries
 
     app.register_blueprint(users)
+    app.register_blueprint(libraries)
     
     return app
