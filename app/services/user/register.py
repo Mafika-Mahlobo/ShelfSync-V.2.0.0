@@ -4,19 +4,19 @@ from app import db
 from app.models.user import Users
 from app.utils.response import Response
 
-def add(user_obj):
+def add(name, email, password):
 
-    existing_user = Users.query.filter_by(email=user_obj['email']).first()
+    existing_user = Users.query.filter_by(email=email).first()
 
     if existing_user:
         return Response.fail("Invalid email or password.", 401)
     
     user = Users(
-        name=user_obj['name'],
-        email=user_obj['email']
+        name=name,
+        email=email
     )
 
-    user.password = user_obj['password']
+    user.password = password
 
     db.session.add(user)
     db.session.commit()

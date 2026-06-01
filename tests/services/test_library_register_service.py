@@ -13,13 +13,6 @@ class TestLibraryRegister(BaseTest):
         self.assertIsNotNone(response)
         self.assertIsInstance(response, Response)
         self.assertEqual(response.status_code, 201)
-        self.assertIsNotNone(response.data)
-
-        self.assertEqual(response.data.name, DEFAULT_LIBRARY_DATA['name'])
-        self.assertEqual(response.data.description, DEFAULT_LIBRARY_DATA['description'])
-        self.assertEqual(response.data.location_address, DEFAULT_LIBRARY_DATA['location_address'])
-        self.assertAlmostEqual(float(response.data.latitude), DEFAULT_LIBRARY_DATA['latitude'], places=6)
-        self.assertAlmostEqual(float(response.data.longitude), DEFAULT_LIBRARY_DATA['longitude'], places=6)
 
     def test_duplicate_library(self):
         

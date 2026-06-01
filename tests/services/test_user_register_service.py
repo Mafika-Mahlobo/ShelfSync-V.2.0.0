@@ -2,6 +2,7 @@ import unittest
 from tests.base import BaseTest
 from app.services.user.register import add
 from app.utils.response import Response
+from tests.helpers import DEFAULT_USER_DATA
 
 class TestRegister(BaseTest):
     
@@ -11,11 +12,11 @@ class TestRegister(BaseTest):
         email = 'john@shefsync.com'
         password = 'JohnD#Strong29'
 
-        result = add({
-                'name': name,
-                'email': email,
-                'password': password
-            })
+        result = add(
+                name=name,
+                email=email,
+                password=password
+            )
         
         
         response = result.to_dict()
@@ -37,11 +38,22 @@ class TestRegister(BaseTest):
         self.assertNotIn(password, response['data'])
         self.assertIn('id', response['data'])
 
-        duplicate = add({
-                'name': name,
-                'email': email,
-                'password': password
-        })
+    def test_duplicate(self):
+
+        user_data = DEFAULT_USER_DATA
+        user_data.pop('confirm_password', None)
+
+        add(
+            name=user_data['name'],
+            email=user_data['email'],
+            password=user_data['password']
+        )
+
+        duplicate = add(
+            name=user_data['name'],
+            email=user_data['email'],
+            password=user_data['password']
+        )
 
         duplicate_response = duplicate.to_dict()
         

@@ -16,7 +16,9 @@ def register_user():
         raise ValueError(Response.fail(e.errors(), 400))
 
     if validated:
-        response = add(validated.model_dump())
+        data = validated.model_dump()
+        data.pop('confirm_password', None)
+        response = add(**data)
         return response.to_http()
     
     return Response.fail('The was an issue processing you request.')
